@@ -5,7 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.3.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lern.Core\Lern.Core.csproj" />
+    <ProjectReference Include="..\Lern.Infrastructure\Lern.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
