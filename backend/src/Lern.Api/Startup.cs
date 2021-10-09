@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
+using Lern.Core;
 using Lern.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +30,7 @@ namespace Lern.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddJwtDefault(Configuration);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Lern.Api", Version = "v1" });
@@ -37,7 +39,8 @@ namespace Lern.Api
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
-            containerBuilder.RegisterModule(new DefaultInfrastructureModule());
+            containerBuilder.RegisterModule(new DefaultInfrastructureModule(Configuration["ConnectionString"]));
+            containerBuilder.RegisterModule(new DefaultCoreModule());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
