@@ -4,6 +4,7 @@ using Autofac;
 using Lern.Core.ProjectAggregate.User;
 using Lern.Infrastructure.Database;
 using Lern.Infrastructure.Database.Interfaces;
+using Lern.Infrastructure.Database.Repositories;
 using Lern.Infrastructure.Handlers.Users;
 using MediatR;
 using MediatR.Pipeline;
@@ -35,6 +36,10 @@ namespace Lern.Infrastructure
             
             builder.RegisterType<AppDbContext>()
                 .WithParameter("connectionString", _dbConnectionString)
+                .InstancePerLifetimeScope();
+            
+            builder.RegisterType<UserRepository>()
+                .As<IUserRepository>()
                 .InstancePerLifetimeScope();
 
             builder.Register<ServiceFactory>(context =>
