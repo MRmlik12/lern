@@ -16,4 +16,4 @@ jobs:
     - name: Install dependencies
       run: yarn --cwd app
     - name: Run eslint
-      run: yarn lint --cwd app lint
+      run: yarn --cwd app lint
