@@ -7,7 +7,7 @@ namespace Lern.Core.Validators
     {
         public RegisterUserModelValidator()
         {
-            RuleFor(x => x.Username).NotEmpty().MinimumLength(15).MaximumLength(100);
+            RuleFor(x => x.Username).NotEmpty().MinimumLength(4).MaximumLength(100);
             RuleFor(x => x.Email).NotEmpty().EmailAddress();
             RuleFor(x => x.Password).NotEmpty().MinimumLength(8);
         }

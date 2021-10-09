@@ -31,6 +31,7 @@ namespace Lern.Api
         {
             services.AddControllers();
             services.AddJwtDefault(Configuration);
+            services.AddValidators();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Lern.Api", Version = "v1" });
