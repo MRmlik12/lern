@@ -1,0 +1,19 @@
+name: Test backend
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  test-dotnet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - name: Install dependencies
+        run: dotnet restore backend/Lern.sln
+      - name: Test project
+        run: dotnet test backend/Lern.sln
