@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:13.4-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: lern
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: 123
+    volumes:
+      - lern-db-postgresql:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4:6.0
+    ports:
+      - 88:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=example@example.com
+      - PGADMIN_DEFAULT_PASSWORD=test
+volumes:
+  lern-db-postgresql:
+    external: true
