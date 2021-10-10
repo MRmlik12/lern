@@ -9,7 +9,7 @@ namespace Lern.Infrastructure.Database.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly DbSet<User> Users;
+        private DbSet<User> Users { get; }
 
         public UserRepository(AppDbContext context)
         {
@@ -24,6 +24,9 @@ namespace Lern.Infrastructure.Database.Repositories
 
         public async Task<User> GetUserById(Guid id)
             => await Users.OrderBy(e => e.Id).Where(e => e.Id == id).FirstAsync();
+        
+        public async Task<User> GetUserByEmail(string email)
+            => await Users.OrderBy(e => e.Email).Where(e => e.Email == email).FirstAsync();
 
         public Task Delete(User user)
         {
