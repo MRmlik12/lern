@@ -32,10 +32,7 @@ namespace Lern.Api
             services.AddControllers();
             services.AddJwtDefault(Configuration);
             services.AddValidators();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Lern.Api", Version = "v1" });
-            });
+            services.AddSwaggerDoc();
         }
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)
@@ -57,6 +54,8 @@ namespace Lern.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

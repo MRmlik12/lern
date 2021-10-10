@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Lern.Core.ProjectAggregate.User;
 using Lern.Infrastructure.Database.Interfaces;
@@ -18,6 +20,15 @@ namespace Lern.Infrastructure.Database.Repositories
         {
             await Users.AddAsync(user);
             return user;
+        }
+
+        public async Task<User> GetUserById(Guid id)
+            => await Users.OrderBy(e => e.Id).Where(e => e.Id == id).FirstAsync();
+
+        public Task Delete(User user)
+        {
+            Users.Remove(user);
+            return Task.CompletedTask;
         }
     }
 }
