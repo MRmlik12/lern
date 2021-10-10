@@ -5,7 +5,7 @@ namespace Lern.Core.Utils
         public static string GetEncryptedPassword(string password)
             => BCrypt.Net.BCrypt.EnhancedHashPassword(password);
 
-        public static bool DecryptPassword(string plainPassword, string hashedPassword)
+        public static bool VerifyPassword(string plainPassword, string hashedPassword)
             => BCrypt.Net.BCrypt.EnhancedVerify(plainPassword, hashedPassword);
     }
 }

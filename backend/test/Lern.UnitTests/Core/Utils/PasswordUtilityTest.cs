@@ -10,7 +10,7 @@ namespace Lern.UnitTests.Core.Utils
         [Fact]
         public void TestPasswordHashing_ChecksDecryptedPasswordIsCorrectWithPlainPassword()
         {
-            Assert.True(PasswordUtility.DecryptPassword(
+            Assert.True(PasswordUtility.VerifyPassword(
                 PlainPassword,
                 PasswordUtility.GetEncryptedPassword(PlainPassword))
             );
