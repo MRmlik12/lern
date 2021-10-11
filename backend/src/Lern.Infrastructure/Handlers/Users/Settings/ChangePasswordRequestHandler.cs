@@ -22,7 +22,8 @@ namespace Lern.Infrastructure.Handlers.Users.Settings
             var user = await _userRepository.GetUserById(request.Id);
             if (!PasswordUtility.VerifyPassword(request.OldPassword, user.Password))
                 throw new InvalidUserPasswordException();
-
+            
+            user.Password = PasswordUtility.GetEncryptedPassword(request.NewPassword);
             await _userRepository.Update(user);
             
             return Unit.Value;
