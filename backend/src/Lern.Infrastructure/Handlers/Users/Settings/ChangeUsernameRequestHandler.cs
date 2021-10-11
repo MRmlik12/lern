@@ -19,16 +19,17 @@ namespace Lern.Infrastructure.Handlers.Users.Settings
         
         public async Task<Unit> Handle(ChangeUsernameMediatorModel request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetUserById(request.Id);
-            if (IsUsernameExists(await _userRepository.GetUserByUsername(request.NewUsername)))
+            if (IsUserCountGreaterOrEqualsOne(await _userRepository.CountUsersByUsername(request.NewUsername)))
                 throw new UsernameIsExistsException();
-
+            
+            var user = await _userRepository.GetUserById(request.Id);
             user.Username = request.NewUsername;
             await _userRepository.Update(user);
+            
             return Unit.Value;
         }
 
-        private bool IsUsernameExists(User user)
-            => string.IsNullOrEmpty(user.Id.ToString());
+        private bool IsUserCountGreaterOrEqualsOne(int userCount)
+            => userCount >= 1;
     }
 }
