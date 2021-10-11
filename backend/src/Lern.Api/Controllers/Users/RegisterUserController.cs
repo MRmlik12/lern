@@ -28,7 +28,6 @@ namespace Lern.Api.Controllers.Users
             var userDto = await _mediator.Send(registerUserModel);
             await _unitOfWork.CompleteAsync();
 
-            
             return Ok(_jwtService.GetGeneratedJwtToken(userDto));
         }
     }
