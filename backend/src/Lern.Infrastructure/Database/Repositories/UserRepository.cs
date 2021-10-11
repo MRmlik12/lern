@@ -28,6 +28,13 @@ namespace Lern.Infrastructure.Database.Repositories
         public async Task<User> GetUserByEmail(string email)
             => await Users.OrderBy(e => e.Email).Where(e => e.Email == email).FirstAsync();
 
+        public Task Update(User user)
+        {
+            Users.Update(user);
+
+            return Task.CompletedTask;
+        }
+
         public Task Delete(User user)
         {
             Users.Remove(user);

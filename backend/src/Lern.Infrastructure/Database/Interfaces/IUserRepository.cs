@@ -10,6 +10,7 @@ namespace Lern.Infrastructure.Database.Interfaces
         Task<User> Create(User user);
         Task<User> GetUserById(Guid id);
         Task<User> GetUserByEmail(string email);
+        Task Update(User user);
         Task Delete(User user);
     }
 }
