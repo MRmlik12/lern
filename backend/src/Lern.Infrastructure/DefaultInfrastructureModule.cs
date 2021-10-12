@@ -42,6 +42,10 @@ namespace Lern.Infrastructure
                 .As<IUserRepository>()
                 .InstancePerLifetimeScope();
 
+            builder.RegisterType<SetRepository>()
+                .As<ISetRepository>()
+                .InstancePerLifetimeScope();
+
             builder.Register<ServiceFactory>(context =>
             {
                 var c = context.Resolve<IComponentContext>();

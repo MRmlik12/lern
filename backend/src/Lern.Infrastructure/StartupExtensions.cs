@@ -1,8 +1,10 @@
 using System.Text;
 using FluentValidation;
+using Lern.Core.Models.Sets;
 using Lern.Core.Models.Users;
 using Lern.Core.Models.Users.Settings;
 using Lern.Core.Validators;
+using Lern.Core.Validators.Sets;
 using Lern.Core.Validators.Users;
 using Lern.Core.Validators.Users.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -21,6 +23,7 @@ namespace Lern.Infrastructure
             services.AddTransient<IValidator<LoginUserModel>, LoginUserModelValidator>();
             services.AddTransient<IValidator<ChangePasswordModel>, ChangePasswordModelValidator>();
             services.AddTransient<IValidator<ChangeUsernameModel>, ChangeUsernameModelValidator>();
+            services.AddTransient<IValidator<CreateSetModel>, CreateSetModelValidator>();
         }
         
         public static void AddJwtDefault(this IServiceCollection services, IConfiguration configuration)
