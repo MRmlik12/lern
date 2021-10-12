@@ -22,9 +22,17 @@ namespace Lern.Infrastructure.Database.Repositories
         public async Task<Set> GetSetById(Guid id, Guid userId)
             => await Sets.OrderBy(e => e.Id).Where(e => e.Id == id).Where(e => e.User.Id == userId).FirstAsync();
 
+        public Task Update(Set set)
+        {
+            Sets.Update(set);
+            
+            return Task.CompletedTask;
+        }
+
         public Task Delete(Set set)
         {
             Sets.Remove(set);
+            
             return Task.CompletedTask;
         }
     }
