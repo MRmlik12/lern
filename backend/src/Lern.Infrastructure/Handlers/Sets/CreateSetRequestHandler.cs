@@ -25,7 +25,7 @@ namespace Lern.Infrastructure.Handlers.Sets
             {
                 Title = request.Title,
                 Language = request.Language,
-                Author = user,
+                User = user,
                 Tags = request.Tags,
                 Items = request.Items
             }.GenerateId().CreateTimestamp();

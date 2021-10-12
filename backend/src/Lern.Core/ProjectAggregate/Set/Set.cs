@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 using Vulder.SharedKernel;
 
 namespace Lern.Core.ProjectAggregate.Set
@@ -11,9 +12,11 @@ namespace Lern.Core.ProjectAggregate.Set
         public string Language { get; set; }
         
         [ForeignKey("Author")]
-        public User.User Author { get; set; }
+        public User.User User { get; set; }
         
         public List<string> Tags { get; set; }
+        
+        [Column(TypeName = "jsonb")]
         public List<SetItem> Items { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset? UpdatedAt { get; set; }
