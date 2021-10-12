@@ -24,6 +24,7 @@ namespace Lern.Infrastructure
             services.AddTransient<IValidator<ChangePasswordModel>, ChangePasswordModelValidator>();
             services.AddTransient<IValidator<ChangeUsernameModel>, ChangeUsernameModelValidator>();
             services.AddTransient<IValidator<CreateSetModel>, CreateSetModelValidator>();
+            services.AddTransient<IValidator<EditSetModel>, EditSetModelValidator>();
         }
         
         public static void AddJwtDefault(this IServiceCollection services, IConfiguration configuration)
