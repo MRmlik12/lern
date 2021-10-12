@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Lern.Core.ProjectAggregate.Set;
 using Lern.Infrastructure.Database.Interfaces;
@@ -16,5 +18,14 @@ namespace Lern.Infrastructure.Database.Repositories
 
         public async Task Create(Set set)
             => await Sets.AddAsync(set);
+
+        public async Task<Set> GetSetById(Guid id, Guid userId)
+            => await Sets.OrderBy(e => e.Id).Where(e => e.Id == id).Where(e => e.User.Id == userId).FirstAsync();
+
+        public Task Delete(Set set)
+        {
+            Sets.Remove(set);
+            return Task.CompletedTask;
+        }
     }
 }
