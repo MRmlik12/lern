@@ -1,3 +1,5 @@
+using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Lern.Core.Models.Sets;
 using Lern.Infrastructure.Database.Interfaces;
@@ -24,7 +26,15 @@ namespace Lern.Api.Controllers.Sets
         [HttpPut]
         public async Task<IActionResult> EditSet([FromBody] EditSetModel editSetModel)
         {
-            await _mediator.Send((EditSetMediatorModel) editSetModel);
+            await _mediator.Send(new EditSetMediatorModel
+            {
+                Id = editSetModel.Id,
+                UserId = Guid.Parse(User.FindFirst(ClaimTypes.PrimarySid)?.Value!),
+                Title = editSetModel.Title,
+                Language = editSetModel.Language,
+                Tags = editSetModel.Tags,
+                Items = editSetModel.Items
+            });
             await _unitOfWork.CompleteAsync();
 
             return Ok();
