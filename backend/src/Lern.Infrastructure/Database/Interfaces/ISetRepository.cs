@@ -7,7 +7,8 @@ namespace Lern.Infrastructure.Database.Interfaces
     public interface ISetRepository
     {
         Task Create(Set set);
-        Task<Set> GetSetById(Guid id, Guid userId);
+        Task<Set> GetSetById(Guid id);
+        Task<Set> GetSetByIdAndUserId(Guid id, Guid userId);
         Task Update(Set set);
         Task Delete(Set set);
     }

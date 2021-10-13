@@ -17,7 +17,7 @@ namespace Lern.Infrastructure.Handlers.Sets
         
         public async Task<Unit> Handle(EditSetMediatorModel request, CancellationToken cancellationToken)
         {
-            var set = await _setRepository.GetSetById(request.Id, request.UserId);
+            var set = await _setRepository.GetSetByIdAndUserId(request.Id, request.UserId);
 
             set.Title = request.Title;
             set.Language = request.Language;
