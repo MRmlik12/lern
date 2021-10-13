@@ -19,7 +19,10 @@ namespace Lern.Infrastructure.Database.Repositories
         public async Task Create(Set set)
             => await Sets.AddAsync(set);
 
-        public async Task<Set> GetSetById(Guid id, Guid userId)
+        public async Task<Set> GetSetById(Guid id)
+            => await Sets.Where(e => e.Id == id).Include(e => e.User).FirstAsync();
+
+        public async Task<Set> GetSetByIdAndUserId(Guid id, Guid userId)
             => await Sets.OrderBy(e => e.Id).Where(e => e.Id == id).Where(e => e.User.Id == userId).FirstAsync();
 
         public Task Update(Set set)

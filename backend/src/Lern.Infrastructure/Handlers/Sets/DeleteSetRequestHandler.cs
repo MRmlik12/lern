@@ -17,7 +17,7 @@ namespace Lern.Infrastructure.Handlers.Sets
         
         public async Task<Unit> Handle(DeleteSetMediatorModel request, CancellationToken cancellationToken)
         {
-            var set = await _setRepository.GetSetById(request.SetId, request.UserId);
+            var set = await _setRepository.GetSetByIdAndUserId(request.SetId, request.UserId);
             await _setRepository.Delete(set);
             
             return Unit.Value;
