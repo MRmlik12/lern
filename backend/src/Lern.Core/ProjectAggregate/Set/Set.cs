@@ -18,6 +18,10 @@ namespace Lern.Core.ProjectAggregate.Set
         
         [Column(TypeName = "jsonb")]
         public List<SetItem> Items { get; set; }
+        
+        [ForeignKey("Stars")]
+        public List<User.User> Stars { get; set; }
+
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset? UpdatedAt { get; set; }
 
