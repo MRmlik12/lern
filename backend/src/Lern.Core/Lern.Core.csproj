@@ -5,17 +5,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="ProjectAggregate\User\Register"/>
+        <Folder Include="ProjectAggregate\User\Register" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="6.3.0"/>
-        <PackageReference Include="AutoMapper" Version="10.1.1"/>
-        <PackageReference Include="BCrypt.Net-Next" Version="4.0.2"/>
-        <PackageReference Include="FluentValidation" Version="10.3.3"/>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.10"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="5.0.10"/>
-        <PackageReference Include="Vulder.SharedKernel" Version="0.1.6"/>
+        <PackageReference Include="Autofac" Version="6.3.0" />
+        <PackageReference Include="AutoMapper" Version="10.1.1" />
+        <PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
+        <PackageReference Include="FluentValidation" Version="10.3.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.10" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="5.0.10" />
+        <PackageReference Include="Vulder.SharedKernel" Version="0.1.6" />
     </ItemGroup>
 
 </Project>
