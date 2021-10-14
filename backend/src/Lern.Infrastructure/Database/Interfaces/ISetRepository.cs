@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Lern.Core.ProjectAggregate.Set;
+using Lern.Infrastructure.Database.Filters;
 
 namespace Lern.Infrastructure.Database.Interfaces
 {
@@ -8,6 +10,7 @@ namespace Lern.Infrastructure.Database.Interfaces
     {
         Task Create(Set set);
         Task<Set> GetSetById(Guid id);
+        Task<List<Set>> GetSetListByUserId(Guid userId, PaginationFilter paginationFilter);
         Task<Set> GetSetByIdAndUserId(Guid id, Guid userId);
         Task Update(Set set);
         Task Delete(Set set);
