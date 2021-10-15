@@ -30,6 +30,16 @@ namespace Lern.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CORS",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
             services.AddJwtDefault(Configuration);
             services.AddValidators();
             services.AddSwaggerDoc();
@@ -54,6 +64,8 @@ namespace Lern.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("CORS");
             
             app.UseAuthentication();
 

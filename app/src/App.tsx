@@ -1,25 +1,38 @@
-import { registerRootComponent } from "expo";
-import { StatusBar } from "expo-status-bar";
 // eslint-disable-next-line no-use-before-define
 import React, { ReactElement } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import Login from "./views/Login";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 
-function App(): ReactElement {
+const Stack = createNativeStackNavigator();
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: "blue",
+    accent: "yellow",
+  },
+};
+
+export default function App(): ReactElement {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <PaperProvider theme={theme}>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen
+            name="Login"
+            component={Login}
+            options={{ title: "Login", headerShown: false }}
+          />
+          <Stack.Screen
+            name="Home"
+            component={Login}
+            options={{ title: "Home" }}
+          />
+        </Stack.Navigator>
+      </PaperProvider>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
-
-export default registerRootComponent(App);

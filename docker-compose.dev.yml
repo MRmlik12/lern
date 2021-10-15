@@ -23,6 +23,18 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=example@example.com
       - PGADMIN_DEFAULT_PASSWORD=test
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
+    restart: always
+    environment:
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - lern-db-elasticsearch:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
 volumes:
   lern-db-postgresql:
+    external: true
+  lern-db-elasticsearch:
     external: true
