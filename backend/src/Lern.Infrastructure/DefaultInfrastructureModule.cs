@@ -48,6 +48,10 @@ namespace Lern.Infrastructure
                 .As<ISetRepository>()
                 .InstancePerLifetimeScope();
 
+            builder.RegisterType<GroupRepository>()
+                .As<IGroupRepository>()
+                .InstancePerLifetimeScope();
+
             builder.Register(context => new MapperConfiguration(c => { c.AddProfile<AutoMapperProfile>(); }));
 
             builder.Register(c =>
@@ -70,15 +74,13 @@ namespace Lern.Infrastructure
                 typeof(IRequestHandler<,>),
                 typeof(IRequestExceptionHandler<,,>),
                 typeof(IRequestExceptionHandler<,>),
-                typeof(INotificationHandler<>),
+                typeof(INotificationHandler<>)
             };
 
             foreach (var mediatorOpenType in mediatorOpenTypes)
-            {
                 builder.RegisterAssemblyTypes(_assemblies.ToArray())
                     .AsClosedTypesOf(mediatorOpenType)
                     .AsImplementedInterfaces();
-            }
         }
     }
 }
