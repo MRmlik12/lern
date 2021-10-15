@@ -5,15 +5,17 @@ using Lern.Core.ProjectAggregate.Set;
 using Lern.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Lern.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211015171055_AddGroups")]
+    partial class AddGroups
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,14 +38,8 @@ namespace Lern.Infrastructure.Migrations
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<List<Guid>>("MembersId")
-                        .HasColumnType("uuid[]");
-
                     b.Property<string>("Name")
                         .HasColumnType("text");
-
-                    b.Property<List<Guid>>("SetCollectionId")
-                        .HasColumnType("uuid[]");
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -73,6 +69,9 @@ namespace Lern.Infrastructure.Migrations
                     b.Property<string>("Language")
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("SetCollection")
+                        .HasColumnType("uuid");
+
                     b.Property<List<string>>("Tags")
                         .HasColumnType("text[]");
 
@@ -85,6 +84,8 @@ namespace Lern.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Author");
+
+                    b.HasIndex("SetCollection");
 
                     b.ToTable("Sets");
                 });
@@ -100,6 +101,9 @@ namespace Lern.Infrastructure.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("text");
+
+                    b.Property<Guid?>("Members")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Password")
                         .HasColumnType("text");
@@ -117,6 +121,8 @@ namespace Lern.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Members");
 
                     b.HasIndex("Stars");
 
@@ -138,14 +144,29 @@ namespace Lern.Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("Author");
 
+                    b.HasOne("Lern.Core.ProjectAggregate.Group.Group", null)
+                        .WithMany("SetCollection")
+                        .HasForeignKey("SetCollection");
+
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("Lern.Core.ProjectAggregate.User.User", b =>
                 {
+                    b.HasOne("Lern.Core.ProjectAggregate.Group.Group", null)
+                        .WithMany("Members")
+                        .HasForeignKey("Members");
+
                     b.HasOne("Lern.Core.ProjectAggregate.Set.Set", null)
                         .WithMany("Stars")
                         .HasForeignKey("Stars");
+                });
+
+            modelBuilder.Entity("Lern.Core.ProjectAggregate.Group.Group", b =>
+                {
+                    b.Navigation("Members");
+
+                    b.Navigation("SetCollection");
                 });
 
             modelBuilder.Entity("Lern.Core.ProjectAggregate.Set.Set", b =>

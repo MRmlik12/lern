@@ -1,4 +1,5 @@
 using System.Reflection;
+using Lern.Core.ProjectAggregate.Group;
 using Lern.Core.ProjectAggregate.Set;
 using Lern.Core.ProjectAggregate.User;
 using Microsoft.EntityFrameworkCore;
@@ -8,9 +9,10 @@ namespace Lern.Infrastructure.Database
     public class AppDbContext : DbContext
     {
         private readonly string _connectionString;
-        
+
         public DbSet<User> Users { get; set; }
         public DbSet<Set> Sets { get; set; }
+        public DbSet<Group> Groups { get; set; }
 
         public AppDbContext(string connectionString)
         {
@@ -18,7 +20,9 @@ namespace Lern.Infrastructure.Database
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseNpgsql(_connectionString);
+        {
+            optionsBuilder.UseNpgsql(_connectionString);
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
