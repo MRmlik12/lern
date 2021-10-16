@@ -4,6 +4,7 @@ import Login from "./views/Login";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
+import Register from "./views/Register";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,11 @@ export default function App(): ReactElement {
             name="Login"
             component={Login}
             options={{ title: "Login", headerShown: false }}
+          />
+          <Stack.Screen
+            name="Register"
+            component={Register}
+            options={{ title: "Register", headerShown: false }}
           />
           <Stack.Screen
             name="Home"

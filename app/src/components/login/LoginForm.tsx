@@ -28,6 +28,10 @@ const LoginForm: React.FC<LoginProps> = ({ navigation }) => {
     ToastAndroid.show("Error", ToastAndroid.SHORT);
   };
 
+  const handleRegister = () => {
+    navigation.navigate("Register");
+  };
+
   const styles = StyleSheet.create({
     container: {
       margin: 10,
@@ -65,7 +69,13 @@ const LoginForm: React.FC<LoginProps> = ({ navigation }) => {
         onChangeText={(text) => setPassword(text)}
       />
       <Button style={styles.loginButton} onPress={handleLogin} mode="contained">Login</Button>
-      <Button style={styles.registerButton} mode="contained">Register Now</Button>
+      <Button
+        style={styles.registerButton}
+        onPress={handleRegister}
+        mode="contained"
+      >
+        Register Now
+      </Button>
     </View>
   );
 };
