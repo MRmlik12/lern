@@ -68,7 +68,9 @@ const LoginForm: React.FC<LoginProps> = ({ navigation }) => {
         value={password}
         onChangeText={(text) => setPassword(text)}
       />
-      <Button style={styles.loginButton} onPress={handleLogin} mode="contained">Login</Button>
+      <Button style={styles.loginButton} onPress={handleLogin} mode="contained">
+        Login
+      </Button>
       <Button
         style={styles.registerButton}
         onPress={handleRegister}
