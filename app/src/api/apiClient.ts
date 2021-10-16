@@ -1,5 +1,5 @@
 import axios from "axios";
-import { saveToken } from "../utils/saveTokens";
+import { saveToken } from "../utils/tokenUtil";
 
 const BASE_URL = "http://192.168.1.212:5000";
 

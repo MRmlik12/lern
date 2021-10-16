@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 import Register from "./views/Register";
+import Home from "./views/home/Home";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,7 +22,12 @@ export default function App(): ReactElement {
   return (
     <NavigationContainer>
       <PaperProvider theme={theme}>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{ title: "Home", headerShown: false }}
+          />
           <Stack.Screen
             name="Login"
             component={Login}
@@ -31,11 +37,6 @@ export default function App(): ReactElement {
             name="Register"
             component={Register}
             options={{ title: "Register", headerShown: false }}
-          />
-          <Stack.Screen
-            name="Home"
-            component={Login}
-            options={{ title: "Home" }}
           />
         </Stack.Navigator>
       </PaperProvider>

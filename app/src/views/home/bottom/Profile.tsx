@@ -3,12 +3,12 @@ import React from "react";
 import { View } from "react-native";
 import { Text } from "react-native-paper";
 
-const Home: React.FC = () => {
+const Profile: React.FC = () => {
   return (
     <View>
-      <Text>Home screen</Text>
+      <Text>Profile</Text>
     </View>
   );
 };
 
-export default Home;
+export default Profile;
