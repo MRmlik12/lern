@@ -12,7 +12,7 @@ namespace Lern.Api.Controllers.Users
     {
         private readonly IMediator _mediator;
         private readonly IJwtService _jwtService;
-        
+
         public LoginUserController(IMediator mediator, IJwtService jwtService)
         {
             _mediator = mediator;

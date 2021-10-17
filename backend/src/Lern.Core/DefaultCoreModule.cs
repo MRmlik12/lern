@@ -10,7 +10,7 @@ namespace Lern.Core
     public class DefaultCoreModule : Module
     {
         private readonly IConfiguration _configuration;
-        
+
         public DefaultCoreModule(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -21,7 +21,7 @@ namespace Lern.Core
             builder.RegisterType<JwtService>()
                 .As<IJwtService>()
                 .InstancePerLifetimeScope();
-            
+
             builder.RegisterInstance(new AuthConfiguration
                 {
                     Key = _configuration["Auth:Key"],

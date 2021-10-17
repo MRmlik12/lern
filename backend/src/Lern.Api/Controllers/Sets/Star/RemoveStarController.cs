@@ -14,7 +14,7 @@ namespace Lern.Api.Controllers.Sets.Star
     public class RemoveStarController : ControllerBase
     {
         private readonly IMediator _mediator;
-        
+
         public RemoveStarController(IMediator mediator)
         {
             _mediator = mediator;
@@ -28,7 +28,7 @@ namespace Lern.Api.Controllers.Sets.Star
                 UserId = Guid.Parse(User.FindFirst(ClaimTypes.PrimarySid)?.Value!),
                 SetId = setId
             });
-            
+
             return Ok();
         }
     }

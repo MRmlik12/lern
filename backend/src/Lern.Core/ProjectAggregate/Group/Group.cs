@@ -10,17 +10,16 @@ namespace Lern.Core.ProjectAggregate.Group
     {
         public string Name { get; set; }
         public string Code { get; set; }
-        
-        [ForeignKey("Admin")]
-        public User.User User { get; set; }
-        
+
+        [ForeignKey("Admin")] public User.User User { get; set; }
+
         public List<Guid> MembersId { get; set; }
-        
+
         public List<Guid> SetCollectionId { get; set; }
 
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset? UpdatedAt { get; set; }
-        
+
         public Group GenerateId()
         {
             Id = Guid.NewGuid();
@@ -31,14 +30,14 @@ namespace Lern.Core.ProjectAggregate.Group
         public Group CreateTimestamp()
         {
             CreatedAt = DateTimeOffset.Now;
-            
+
             return this;
         }
-        
+
         public Group UpdateTimestamp()
         {
             UpdatedAt = DateTimeOffset.Now;
-            
+
             return this;
         }
 

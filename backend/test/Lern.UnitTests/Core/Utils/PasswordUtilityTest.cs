@@ -6,7 +6,7 @@ namespace Lern.UnitTests.Core.Utils
     public class PasswordUtilityTest
     {
         private const string PlainPassword = "example123";
-        
+
         [Fact]
         public void TestPasswordHashing_ChecksDecryptedPasswordIsCorrectWithPlainPassword()
         {

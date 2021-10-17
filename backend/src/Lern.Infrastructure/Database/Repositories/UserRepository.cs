@@ -23,14 +23,20 @@ namespace Lern.Infrastructure.Database.Repositories
         }
 
         public async Task<User> GetUserById(Guid id)
-            => await Users.OrderBy(e => e.Id).Where(e => e.Id == id).FirstAsync();
-        
+        {
+            return await Users.OrderBy(e => e.Id).Where(e => e.Id == id).FirstAsync();
+        }
+
         public async Task<User> GetUserByEmail(string email)
-            => await Users.OrderBy(e => e.Email).Where(e => e.Email == email).FirstAsync();
+        {
+            return await Users.OrderBy(e => e.Email).Where(e => e.Email == email).FirstAsync();
+        }
 
         public async Task<int> CountUsersByUsername(string username)
-            => await Users.OrderBy(e => e.Username).Where(e => e.Username == username).CountAsync();
-        
+        {
+            return await Users.OrderBy(e => e.Username).Where(e => e.Username == username).CountAsync();
+        }
+
         public Task Update(User user)
         {
             Users.Update(user);

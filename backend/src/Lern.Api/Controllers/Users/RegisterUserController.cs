@@ -14,7 +14,7 @@ namespace Lern.Api.Controllers.Users
         private readonly IMediator _mediator;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IJwtService _jwtService;
-        
+
         public RegisterUserController(IMediator mediator, IUnitOfWork unitOfWork, IJwtService jwtService)
         {
             _mediator = mediator;

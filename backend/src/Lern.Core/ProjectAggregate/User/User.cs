@@ -11,25 +11,25 @@ namespace Lern.Core.ProjectAggregate.User
         public Role Role { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset? UpdatedAt { get; set; }
-        
+
         public User GenerateId()
         {
             Id = Guid.NewGuid();
-            
+
             return this;
         }
 
         public User CreateTimestamp()
         {
             CreatedAt = DateTimeOffset.Now;
-            
+
             return this;
         }
-        
+
         public User UpdateTimestamp()
         {
             UpdatedAt = DateTimeOffset.Now;
-            
+
             return this;
         }
     }

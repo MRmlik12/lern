@@ -39,9 +39,9 @@ namespace Lern.Core.Services
                     SecurityAlgorithms.HmacSha256Signature
                 )
             };
-            
+
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            
+
             return tokenHandler.WriteToken(token);
         }
     }

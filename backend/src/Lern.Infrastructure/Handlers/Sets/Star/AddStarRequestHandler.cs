@@ -11,18 +11,18 @@ namespace Lern.Infrastructure.Handlers.Sets.Star
     {
         private readonly ISetRepository _setRepository;
         private readonly IUserRepository _userRepository;
-        
+
         public AddStarRequestHandler(ISetRepository setRepository, IUserRepository userRepository)
         {
             _setRepository = setRepository;
             _userRepository = userRepository;
         }
-        
+
         public async Task<Unit> Handle(AddStarMediatorModel request, CancellationToken cancellationToken)
         {
             var set = await _setRepository.GetSetById(request.SetId);
             var user = await _userRepository.GetUserById(request.UserId);
-            
+
             set.Stars.Add(user);
             await _setRepository.Update(set);
 

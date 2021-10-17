@@ -16,7 +16,7 @@ namespace Lern.Api.Controllers.Groups.User
     {
         private readonly IMediator _mediator;
         private readonly IUnitOfWork _unitOfWork;
-        
+
         public UserJoinController(IMediator mediator, IUnitOfWork unitOfWork)
         {
             _mediator = mediator;

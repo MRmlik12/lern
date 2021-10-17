@@ -66,15 +66,12 @@ namespace Lern.Api
             app.UseRouting();
 
             app.UseCors("CORS");
-            
+
             app.UseAuthentication();
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

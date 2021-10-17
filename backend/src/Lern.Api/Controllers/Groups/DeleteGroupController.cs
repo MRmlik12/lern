@@ -16,7 +16,7 @@ namespace Lern.Api.Controllers.Groups
     {
         private readonly IMediator _mediator;
         private readonly IUnitOfWork _unitOfWork;
-        
+
         public DeleteGroupController(IMediator mediator, IUnitOfWork unitOfWork)
         {
             _mediator = mediator;
@@ -31,7 +31,7 @@ namespace Lern.Api.Controllers.Groups
                 UserId = Guid.Parse(User.FindFirst(ClaimTypes.PrimarySid)?.Value!),
                 GroupId = deleteGroupModel.GroupId
             });
-            
+
             await _unitOfWork.CompleteAsync();
 
             return Ok();

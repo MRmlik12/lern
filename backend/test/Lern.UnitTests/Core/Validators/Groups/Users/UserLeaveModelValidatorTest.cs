@@ -1,3 +1,4 @@
+using System;
 using FluentValidation.TestHelper;
 using Lern.Core.Models.Groups.Users;
 using Lern.Core.Validators.Groups.Users;
@@ -5,21 +6,21 @@ using Xunit;
 
 namespace Lern.UnitTests.Core.Validators.Groups.Users
 {
-    public class UserJoinModelValidatorTest
+    public class UserLeaveModelValidatorTest
     {
-        private readonly UserJoinModelValidator _validator;
+        private readonly UserLeaveModelValidator _validator;
 
-        public UserJoinModelValidatorTest()
+        public UserLeaveModelValidatorTest()
         {
-            _validator = new UserJoinModelValidator();
+            _validator = new UserLeaveModelValidator();
         }
 
         [Fact]
         public void TestRegisterUserValidator_ChecksValidModel()
         {
-            var model = new UserJoinModel()
+            var model = new UserLeaveModel()
             {
-                Code = "OTY0MDA2OA"
+                GroupId = Guid.NewGuid()
             };
 
             Assert.True(_validator.TestValidate(model).IsValid);

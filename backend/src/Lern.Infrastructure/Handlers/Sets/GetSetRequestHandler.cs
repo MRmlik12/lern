@@ -10,12 +10,12 @@ namespace Lern.Infrastructure.Handlers.Sets
     public class GetSetRequestHandler : IRequestHandler<GetSetMediatorModel, SetDto>
     {
         private readonly ISetRepository _setRepository;
-        
+
         public GetSetRequestHandler(ISetRepository setRepository)
         {
             _setRepository = setRepository;
         }
-        
+
         public async Task<SetDto> Handle(GetSetMediatorModel request, CancellationToken cancellationToken)
         {
             var set = await _setRepository.GetSetById(request.SetId);

@@ -7,7 +7,6 @@ namespace Lern.Core.ProjectAggregate.User.Exceptions
         public UsernameIsExistsException(string message = "This username has exists in db, please choose another") :
             base(message)
         {
-            
         }
     }
 }

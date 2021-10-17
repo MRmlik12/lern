@@ -22,15 +22,23 @@ namespace Lern.Infrastructure.Database.Repositories
         }
 
         public async Task<Group> GetGroupByCode(string code)
-            => await Groups.Where(e => e.Code == code).FirstAsync();
+        {
+            return await Groups.Where(e => e.Code == code).FirstAsync();
+        }
 
         public async Task<Group> GetGroupById(Guid id)
-            => await Groups.Where(e => e.Id == id).FirstAsync();
-
-        public async Task<Group> GetGroupById(Guid ownerId, Guid groupId)
-            => await Groups.Where(e => e.Id == groupId && e.User.Id == ownerId)
+        {
+            return await Groups.Where(e => e.Id == id)
                 .Include(e => e.User)
                 .FirstAsync();
+        }
+
+        public async Task<Group> GetGroupById(Guid ownerId, Guid groupId)
+        {
+            return await Groups.Where(e => e.Id == groupId && e.User.Id == ownerId)
+                .Include(e => e.User)
+                .FirstAsync();
+        }
 
         public Task Update(Group group)
         {

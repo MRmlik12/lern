@@ -28,7 +28,7 @@ namespace Lern.Api.Controllers.Users.Sets
                 UserId = userId ?? Guid.Parse(User.FindFirst(ClaimTypes.PrimarySid)?.Value!),
                 Page = page
             });
-            
+
             return Ok(sets);
         }
     }

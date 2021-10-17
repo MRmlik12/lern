@@ -7,7 +7,7 @@ namespace Lern.Infrastructure.Database
     {
         public AppDbContext CreateDbContext(string[] args)
         {
-            return new AppDbContext(Environment.GetEnvironmentVariable("POSTGRES_STRING") 
+            return new AppDbContext(Environment.GetEnvironmentVariable("POSTGRES_STRING")
                                     ?? "Server=localhost;Database=lern;Uid=test;Pwd=123;");
         }
     }

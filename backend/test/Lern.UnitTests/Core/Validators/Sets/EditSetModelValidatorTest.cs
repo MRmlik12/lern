@@ -15,8 +15,8 @@ namespace Lern.UnitTests.Core.Validators.Sets
         public EditSetModelValidatorTest()
         {
             _validator = new EditSetModelValidator();
-        }   
-        
+        }
+
         [Fact]
         public void TestRegisterUserValidator_ChecksValidModel()
         {
@@ -31,14 +31,14 @@ namespace Lern.UnitTests.Core.Validators.Sets
                 },
                 Items = new List<SetItem>
                 {
-                    new SetItem
+                    new()
                     {
                         PrimaryWord = "Apple",
                         TranslatedWord = "Apple"
                     }
                 }
             };
-            
+
             Assert.True(_validator.TestValidate(model).IsValid);
         }
     }
