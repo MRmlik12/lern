@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-use-before-define
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { BottomNavigation } from "react-native-paper";
 import Dashboard from "./bottom/Dashboard";
 import Profile from "./bottom/Profile";
