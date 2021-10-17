@@ -3,11 +3,7 @@ import React from "react";
 import { Portal, Provider, FAB } from "react-native-paper";
 import { NavigationProp } from "@react-navigation/native";
 
-interface GroupsProps {
-  navigation: NavigationProp<any>;
-}
-
-const GroupsFAB: React.FC<GroupsProps> = ({ navigation }) => {
+const GroupsFAB = () => {
   const [state, setState] = React.useState({ open: false });
   const onStateChange = ({ open }: any) => setState({ open });
 
@@ -15,12 +11,12 @@ const GroupsFAB: React.FC<GroupsProps> = ({ navigation }) => {
     {
       icon: "account-group-outline",
       label: "Create group",
-      onPress: () => navigation.navigate("CreateGroup"),
+      onPress: () => console.log(""),
     },
     {
       icon: "account-multiple-plus-outline",
       label: "Join to group",
-      onPress: () => navigation.navigate("JoinGroup"),
+      onPress: () => console.log(""),
     },
   ];
 
@@ -39,10 +35,10 @@ const GroupsFAB: React.FC<GroupsProps> = ({ navigation }) => {
   );
 };
 
-const Groups: React.FC<GroupsProps> = ({ navigation }) => {
+const Groups: React.FC = () => {
   return (
     <Provider>
-      <GroupsFAB navigation={navigation} />
+      <GroupsFAB />
     </Provider>
   );
 };
