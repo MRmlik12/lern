@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Lern.Core.ProjectAggregate.Group;
 using Lern.Infrastructure.Database.Interfaces;
@@ -7,7 +9,7 @@ namespace Lern.Infrastructure.Database.Repositories
 {
     public class GroupRepository : IGroupRepository
     {
-        private DbSet<Group> Groups { get; set; }
+        private DbSet<Group> Groups { get; }
 
         public GroupRepository(AppDbContext context)
         {
@@ -15,6 +17,20 @@ namespace Lern.Infrastructure.Database.Repositories
         }
 
         public async Task Create(Group group)
-            => await Groups.AddAsync(group);
+        {
+            await Groups.AddAsync(group);
+        }
+
+        public async Task<Group> GetGroupById(Guid ownerId, Guid groupId)
+            => await Groups.Where(e => e.Id == groupId && e.User.Id == ownerId)
+                .Include(e => e.User)
+                .FirstAsync();
+
+        public Task Delete(Group group)
+        {
+            Groups.Remove(group);
+
+            return Task.CompletedTask;
+        }
     }
 }

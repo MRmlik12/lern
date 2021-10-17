@@ -12,29 +12,29 @@ namespace Lern.Api.Controllers.Groups
     [Authorize]
     [ApiController]
     [Route("group/[controller]")]
-    public class CreateGroupController : ControllerBase
+    public class DeleteGroupController : ControllerBase
     {
         private readonly IMediator _mediator;
         private readonly IUnitOfWork _unitOfWork;
-
-        public CreateGroupController(IMediator mediator, IUnitOfWork unitOfWork)
+        
+        public DeleteGroupController(IMediator mediator, IUnitOfWork unitOfWork)
         {
             _mediator = mediator;
             _unitOfWork = unitOfWork;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateGroup([FromBody] CreateGroupModel createGroupModel)
+        [HttpDelete]
+        public async Task<IActionResult> DeleteGroup([FromBody] DeleteGroupModel deleteGroupModel)
         {
-            var shareCode = await _mediator.Send(new CreateGroupMediatorModel
+            await _mediator.Send(new DeleteGroupMediatorModel
             {
                 UserId = Guid.Parse(User.FindFirst(ClaimTypes.PrimarySid)?.Value!),
-                Name = createGroupModel.Name
+                GroupId = deleteGroupModel.GroupId
             });
-
+            
             await _unitOfWork.CompleteAsync();
 
-            return Ok(shareCode);
+            return Ok();
         }
     }
 }
