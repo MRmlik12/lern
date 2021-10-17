@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Lern.Core.Models.Groups;
@@ -24,7 +26,8 @@ namespace Lern.Infrastructure.Handlers.Groups
             var group = new Group
             {
                 Name = request.Name,
-                User = user
+                User = user,
+                MembersId = new List<Guid> { request.UserId }
             }.GenerateId().CreateTimestamp().GenerateCode();
             
             await _groupRepository.Create(group);

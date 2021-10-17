@@ -1,11 +1,13 @@
 using System.Text;
 using FluentValidation;
 using Lern.Core.Models.Groups;
+using Lern.Core.Models.Groups.Users;
 using Lern.Core.Models.Sets;
 using Lern.Core.Models.Users;
 using Lern.Core.Models.Users.Settings;
 using Lern.Core.Validators;
 using Lern.Core.Validators.Groups;
+using Lern.Core.Validators.Groups.Users;
 using Lern.Core.Validators.Sets;
 using Lern.Core.Validators.Users;
 using Lern.Core.Validators.Users.Settings;
@@ -29,6 +31,7 @@ namespace Lern.Infrastructure
             services.AddTransient<IValidator<EditSetModel>, EditSetModelValidator>();
             services.AddTransient<IValidator<CreateGroupModel>, CreateGroupModelValidator>();
             services.AddTransient<IValidator<DeleteGroupModel>, DeleteGroupModelValidator>();
+            services.AddTransient<IValidator<UserJoinModel>, UserJoinModelValidator>();
         }
 
         public static void AddJwtDefault(this IServiceCollection services, IConfiguration configuration)
