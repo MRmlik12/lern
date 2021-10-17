@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-use-before-define
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { Appbar, BottomNavigation, Provider } from "react-native-paper";
 import Dashboard from "./bottom/Dashboard";
 import Profile from "./bottom/Profile";
@@ -30,7 +30,7 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
 
   const renderScene = BottomNavigation.SceneMap({
     dashboard: Dashboard,
-    groups: Groups({ navigation: navigation }),
+    groups: Groups,
     profile: Profile,
   });
 

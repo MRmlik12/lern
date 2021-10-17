@@ -1,13 +1,15 @@
 // eslint-disable-next-line no-use-before-define
 import React from "react";
-import { View } from "react-native";
-import { Text } from "react-native-paper";
+import { ScrollView } from "react-native";
+import ProfileInfo from "../../../components/home/profile/ProfileInfo";
+import ProfileSettings from "../../../components/home/profile/ProfileSettings";
 
 const Profile: React.FC = () => {
   return (
-    <View>
-      <Text>Profile</Text>
-    </View>
+    <ScrollView>
+      <ProfileInfo />
+      <ProfileSettings />
+    </ScrollView>
   );
 };
 
