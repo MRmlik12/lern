@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-use-before-define
 import React from "react";
 import { ScrollView } from "react-native";
 import ProfileInfo from "../../../components/home/profile/ProfileInfo";
