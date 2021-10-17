@@ -1,9 +1,11 @@
 using System.Text;
 using FluentValidation;
+using Lern.Core.Models.Groups;
 using Lern.Core.Models.Sets;
 using Lern.Core.Models.Users;
 using Lern.Core.Models.Users.Settings;
 using Lern.Core.Validators;
+using Lern.Core.Validators.Groups;
 using Lern.Core.Validators.Sets;
 using Lern.Core.Validators.Users;
 using Lern.Core.Validators.Users.Settings;
@@ -25,8 +27,10 @@ namespace Lern.Infrastructure
             services.AddTransient<IValidator<ChangeUsernameModel>, ChangeUsernameModelValidator>();
             services.AddTransient<IValidator<CreateSetModel>, CreateSetModelValidator>();
             services.AddTransient<IValidator<EditSetModel>, EditSetModelValidator>();
+            services.AddTransient<IValidator<CreateGroupModel>, CreateGroupModelValidator>();
+            services.AddTransient<IValidator<DeleteGroupModel>, DeleteGroupModelValidator>();
         }
-        
+
         public static void AddJwtDefault(this IServiceCollection services, IConfiguration configuration)
         {
             var authSection = configuration.GetSection("Auth");
@@ -37,7 +41,8 @@ namespace Lern.Infrastructure
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authSection.GetValue<string>("Key"))),
+                        IssuerSigningKey =
+                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authSection.GetValue<string>("Key"))),
                         ValidateIssuer = true,
                         ValidIssuer = authSection.GetValue<string>("Issuer"),
                         ValidateAudience = true,
@@ -47,9 +52,10 @@ namespace Lern.Infrastructure
                     };
                 });
         }
-        
+
         public static void AddSwaggerDoc(this IServiceCollection services)
-            => services.AddSwaggerGen(c =>
+        {
+            services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Lern.Api", Version = "v1" });
                 var securitySchema = new OpenApiSecurityScheme
@@ -63,13 +69,14 @@ namespace Lern.Infrastructure
                     {
                         Type = ReferenceType.SecurityScheme,
                         Id = "Bearer"
-                    },
+                    }
                 };
                 c.AddSecurityDefinition("Bearer", securitySchema);
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
-                    { securitySchema, new [] { "Bearer" } }   
+                    { securitySchema, new[] { "Bearer" } }
                 });
             });
+        }
     }
 }
