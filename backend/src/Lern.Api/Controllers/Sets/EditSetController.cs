@@ -16,7 +16,7 @@ namespace Lern.Api.Controllers.Sets
     {
         private readonly IMediator _mediator;
         private readonly IUnitOfWork _unitOfWork;
-        
+
         public EditSetController(IMediator mediator, IUnitOfWork unitOfWork)
         {
             _mediator = mediator;

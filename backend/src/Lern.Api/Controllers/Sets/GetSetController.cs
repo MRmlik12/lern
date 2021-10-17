@@ -7,13 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Lern.Api.Controllers.Sets
 {
-    [Authorize]   
+    [Authorize]
     [ApiController]
     [Route("set/[controller]")]
     public class GetSetController : ControllerBase
     {
         private readonly IMediator _mediator;
-        
+
         public GetSetController(IMediator mediator)
         {
             _mediator = mediator;

@@ -31,7 +31,7 @@ namespace Lern.Infrastructure.Handlers.Sets
             }.GenerateId().CreateTimestamp();
 
             await _setRepository.Create(set);
-            
+
             return Unit.Value;
         }
     }

@@ -1,35 +1,35 @@
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Lern.Core.Models.Sets;
+using Lern.Core.Models.Groups.Users;
 using Lern.Infrastructure.Database.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Lern.Api.Controllers.Sets
+namespace Lern.Api.Controllers.Groups.User
 {
     [Authorize]
     [ApiController]
-    [Route("set/[controller]")]
-    public class DeleteSetController : ControllerBase
+    [Route("group/user/[controller]")]
+    public class UserLeaveController : ControllerBase
     {
         private readonly IMediator _mediator;
         private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteSetController(IMediator mediator, IUnitOfWork unitOfWork)
+        public UserLeaveController(IMediator mediator, IUnitOfWork unitOfWork)
         {
             _mediator = mediator;
             _unitOfWork = unitOfWork;
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteSet([FromQuery] Guid id)
+        public async Task<IActionResult> UserLeave([FromBody] UserLeaveModel userLeaveModel)
         {
-            await _mediator.Send(new DeleteSetMediatorModel
+            await _mediator.Send(new UserLeaveMediatorModel
             {
                 UserId = Guid.Parse(User.FindFirst(ClaimTypes.PrimarySid)?.Value!),
-                SetId = id
+                GroupId = userLeaveModel.GroupId
             });
             await _unitOfWork.CompleteAsync();
 

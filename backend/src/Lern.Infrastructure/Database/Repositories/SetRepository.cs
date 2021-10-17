@@ -19,20 +19,28 @@ namespace Lern.Infrastructure.Database.Repositories
         }
 
         public async Task Create(Set set)
-            => await Sets.AddAsync(set);
+        {
+            await Sets.AddAsync(set);
+        }
 
         public async Task<Set> GetSetById(Guid id)
-            => await Sets.Where(e => e.Id == id).Include(e => e.User).FirstAsync();
+        {
+            return await Sets.Where(e => e.Id == id).Include(e => e.User).FirstAsync();
+        }
 
         public async Task<List<Set>> GetSetListByUserId(Guid userId, PaginationFilter paginationFilter)
-            => await Sets.OrderBy(e => e.CreatedAt)
+        {
+            return await Sets.OrderBy(e => e.CreatedAt)
                 .Where(e => e.User.Id == userId)
                 .Include(e => e.User)
                 .Take(paginationFilter.PageNumber * paginationFilter.PageSize)
                 .ToListAsync();
+        }
 
         public async Task<Set> GetSetByIdAndUserId(Guid id, Guid userId)
-            => await Sets.OrderBy(e => e.Id).Where(e => e.Id == id).Where(e => e.User.Id == userId).FirstAsync();
+        {
+            return await Sets.OrderBy(e => e.Id).Where(e => e.Id == id).Where(e => e.User.Id == userId).FirstAsync();
+        }
 
         public Task Update(Set set)
         {

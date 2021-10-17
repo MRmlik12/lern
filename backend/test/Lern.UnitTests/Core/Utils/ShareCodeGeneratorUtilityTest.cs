@@ -11,7 +11,7 @@ namespace Lern.UnitTests.Core.Utils
         public void TestGetShortCode()
         {
             var result = ShareCodeGeneratorUtility.GetShortCode(new Group().GenerateId().CreateTimestamp());
-            
+
             Assert.IsType<string>(result);
             Assert.Equal(10, result.Length);
         }

@@ -17,7 +17,7 @@ namespace Lern.Infrastructure.Handlers.Users
         {
             _userRepository = userRepository;
         }
-        
+
         public async Task<UserDto> Handle(LoginUserModel request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetUserByEmail(request.Email);
@@ -29,7 +29,7 @@ namespace Lern.Infrastructure.Handlers.Users
                     Email = user.Email,
                     Role = user.Role
                 };
-            
+
             throw new InvalidUserPasswordException();
         }
     }

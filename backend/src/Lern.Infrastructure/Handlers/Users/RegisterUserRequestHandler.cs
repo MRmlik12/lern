@@ -12,12 +12,12 @@ namespace Lern.Infrastructure.Handlers.Users
     public class RegisterUserRequestHandler : IRequestHandler<RegisterUserModel, UserDto>
     {
         private readonly IUserRepository _userRepository;
-        
+
         public RegisterUserRequestHandler(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
-        
+
         public async Task<UserDto> Handle(RegisterUserModel request, CancellationToken cancellationToken)
         {
             var user = new User
@@ -29,7 +29,7 @@ namespace Lern.Infrastructure.Handlers.Users
             }.GenerateId().CreateTimestamp();
 
             await _userRepository.Create(user);
-            
+
             return new UserDto
             {
                 Id = user.Id,

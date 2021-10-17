@@ -14,7 +14,7 @@ namespace Lern.Api.Controllers.Users.Settings
     {
         private readonly IMediator _mediator;
         private readonly IUnitOfWork _unitOfWork;
-        
+
         public ChangeUsernameController(IMediator mediator, IUnitOfWork unitOfWork)
         {
             _mediator = mediator;
@@ -29,9 +29,9 @@ namespace Lern.Api.Controllers.Users.Settings
                 Id = Guid.Parse(User.FindFirst(ClaimTypes.PrimarySid)?.Value!),
                 NewUsername = changeUsernameModel.NewUsername
             });
-            
+
             await _unitOfWork.CompleteAsync();
-            
+
             return Ok();
         }
     }

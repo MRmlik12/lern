@@ -13,7 +13,7 @@ namespace Lern.Infrastructure.Handlers.Groups
     {
         private readonly IGroupRepository _groupRepository;
         private readonly IUserRepository _userRepository;
-        
+
         public CreateGroupRequestHandler(IGroupRepository groupRepository, IUserRepository userRepository)
         {
             _groupRepository = groupRepository;
@@ -29,7 +29,7 @@ namespace Lern.Infrastructure.Handlers.Groups
                 User = user,
                 MembersId = new List<Guid> { request.UserId }
             }.GenerateId().CreateTimestamp().GenerateCode();
-            
+
             await _groupRepository.Create(group);
 
             return group.Code;

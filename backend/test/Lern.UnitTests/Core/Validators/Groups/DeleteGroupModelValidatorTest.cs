@@ -13,8 +13,8 @@ namespace Lern.UnitTests.Core.Validators.Groups
         public DeleteGroupModelValidatorTest()
         {
             _validator = new DeleteGroupModelValidator();
-        }   
-        
+        }
+
         [Fact]
         public void TestDeleteGroupValidator_ChecksValidModel()
         {
@@ -22,7 +22,7 @@ namespace Lern.UnitTests.Core.Validators.Groups
             {
                 GroupId = Guid.NewGuid()
             };
-            
+
             Assert.True(_validator.TestValidate(model).IsValid);
         }
     }

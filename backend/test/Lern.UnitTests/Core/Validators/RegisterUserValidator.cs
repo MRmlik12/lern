@@ -12,8 +12,8 @@ namespace Lern.UnitTests.Core.Validators
         public RegisterUserValidatorTest()
         {
             _validator = new RegisterUserModelValidator();
-        }   
-        
+        }
+
         [Fact]
         public void TestRegisterUserValidator_ChecksValidModel()
         {
@@ -23,7 +23,7 @@ namespace Lern.UnitTests.Core.Validators
                 Password = "qwertyuiop",
                 Username = "example"
             };
-            
+
             Assert.True(_validator.TestValidate(model).IsValid);
         }
     }

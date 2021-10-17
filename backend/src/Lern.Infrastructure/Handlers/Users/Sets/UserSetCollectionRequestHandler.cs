@@ -13,7 +13,8 @@ using MediatR;
 
 namespace Lern.Infrastructure.Handlers.Users.Sets
 {
-    public class UserSetCollectionRequestHandler : IRequestHandler<UserSetCollectionMediatorModel, List<SetCardItemsDto>>
+    public class
+        UserSetCollectionRequestHandler : IRequestHandler<UserSetCollectionMediatorModel, List<SetCardItemsDto>>
     {
         private readonly ISetRepository _setRepository;
         private readonly IMapper _mapper;
@@ -23,8 +24,9 @@ namespace Lern.Infrastructure.Handlers.Users.Sets
             _setRepository = setRepository;
             _mapper = mapper;
         }
-        
-        public async Task<List<SetCardItemsDto>> Handle(UserSetCollectionMediatorModel request, CancellationToken cancellationToken)
+
+        public async Task<List<SetCardItemsDto>> Handle(UserSetCollectionMediatorModel request,
+            CancellationToken cancellationToken)
         {
             var sets = await _setRepository.GetSetListByUserId(request.UserId, new PaginationFilter(request.Page));
 
@@ -37,7 +39,7 @@ namespace Lern.Infrastructure.Handlers.Users.Sets
                 UserId = x.User.Id,
                 Username = x.User.Username
             }).ToList();
-            
+
             return setCardItems;
         }
     }

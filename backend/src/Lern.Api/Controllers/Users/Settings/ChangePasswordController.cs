@@ -16,7 +16,7 @@ namespace Lern.Api.Controllers.Users.Settings
     {
         private readonly IMediator _mediator;
         private readonly IUnitOfWork _unitOfWork;
-        
+
         public ChangePasswordController(IMediator mediator, IUnitOfWork unitOfWork)
         {
             _mediator = mediator;
@@ -32,7 +32,7 @@ namespace Lern.Api.Controllers.Users.Settings
                 OldPassword = resetPasswordModel.OldPassword,
                 NewPassword = resetPasswordModel.NewPassword
             };
-            
+
             await _mediator.Send(resetPasswordMediatorModel);
             await _unitOfWork.CompleteAsync();
 

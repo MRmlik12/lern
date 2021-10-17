@@ -17,7 +17,7 @@ namespace Lern.Api.Controllers.Users
     {
         private readonly IMediator _mediator;
         private readonly IUnitOfWork _unitOfWork;
-        
+
         public DeleteUserController(IMediator mediator, IUnitOfWork unitOfWork)
         {
             _mediator = mediator;

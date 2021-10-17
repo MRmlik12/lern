@@ -12,8 +12,8 @@ namespace Lern.UnitTests.Core.Validators.Groups
         public CreateGroupModelValidatorTest()
         {
             _validator = new CreateGroupModelValidator();
-        }   
-        
+        }
+
         [Fact]
         public void TestRegisterUserValidator_ChecksValidModel()
         {
@@ -21,7 +21,7 @@ namespace Lern.UnitTests.Core.Validators.Groups
             {
                 Name = "ABCDEFG"
             };
-            
+
             Assert.True(_validator.TestValidate(model).IsValid);
         }
     }

@@ -18,7 +18,7 @@ namespace Lern.Infrastructure.Handlers.Groups.Users
         {
             _groupRepository = groupRepository;
         }
-        
+
         public async Task<Unit> Handle(UserJoinMediatorModel request, CancellationToken cancellationToken)
         {
             var group = await _groupRepository.GetGroupByCode(request.Code);
@@ -27,11 +27,13 @@ namespace Lern.Infrastructure.Handlers.Groups.Users
 
             group.MembersId.Add(request.UserId);
             await _groupRepository.Update(group);
-            
+
             return Unit.Value;
         }
 
         private static bool IsUserInMembers(Group group, Guid userId)
-            => string.IsNullOrEmpty(group.MembersId.First(x => x == userId).ToString());
+        {
+            return string.IsNullOrEmpty(group.MembersId.First(x => x == userId).ToString());
+        }
     }
 }

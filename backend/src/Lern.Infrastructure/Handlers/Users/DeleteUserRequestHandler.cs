@@ -9,7 +9,7 @@ namespace Lern.Infrastructure.Handlers.Users
     public class DeleteUserRequestHandler : IRequestHandler<DeleteUserModel>
     {
         private readonly IUserRepository _userRepository;
-        
+
         public DeleteUserRequestHandler(IUserRepository userRepository)
         {
             _userRepository = userRepository;
@@ -19,7 +19,7 @@ namespace Lern.Infrastructure.Handlers.Users
         {
             var user = await _userRepository.GetUserById(request.Id);
             await _userRepository.Delete(user);
-            
+
             return Unit.Value;
         }
     }

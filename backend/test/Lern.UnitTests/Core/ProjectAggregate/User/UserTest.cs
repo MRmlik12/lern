@@ -10,13 +10,13 @@ namespace Lern.UnitTests.Core.ProjectAggregate.User
         {
             Assert.IsType<DateTimeOffset>(new Lern.Core.ProjectAggregate.User.User().CreateTimestamp().CreatedAt);
         }
-        
+
         [Fact]
         public void TestUserIdType()
         {
             Assert.IsType<Guid>(new Lern.Core.ProjectAggregate.User.User().CreateTimestamp().Id);
         }
-        
+
         [Fact]
         public void TestUserUpdatedAtType()
         {

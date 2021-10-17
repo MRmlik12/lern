@@ -32,6 +32,7 @@ namespace Lern.Infrastructure
             services.AddTransient<IValidator<CreateGroupModel>, CreateGroupModelValidator>();
             services.AddTransient<IValidator<DeleteGroupModel>, DeleteGroupModelValidator>();
             services.AddTransient<IValidator<UserJoinModel>, UserJoinModelValidator>();
+            services.AddTransient<IValidator<UserLeaveModel>, UserLeaveModelValidator>();
         }
 
         public static void AddJwtDefault(this IServiceCollection services, IConfiguration configuration)

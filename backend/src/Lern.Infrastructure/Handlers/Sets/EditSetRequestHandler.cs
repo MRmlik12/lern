@@ -9,12 +9,12 @@ namespace Lern.Infrastructure.Handlers.Sets
     public class EditSetRequestHandler : IRequestHandler<EditSetMediatorModel, Unit>
     {
         private readonly ISetRepository _setRepository;
-        
+
         public EditSetRequestHandler(ISetRepository setRepository)
         {
             _setRepository = setRepository;
         }
-        
+
         public async Task<Unit> Handle(EditSetMediatorModel request, CancellationToken cancellationToken)
         {
             var set = await _setRepository.GetSetByIdAndUserId(request.Id, request.UserId);
@@ -25,7 +25,7 @@ namespace Lern.Infrastructure.Handlers.Sets
             set.Items = request.Items;
 
             await _setRepository.Update(set.UpdateTimestamp());
-            
+
             return Unit.Value;
         }
     }
