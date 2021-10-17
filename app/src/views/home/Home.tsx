@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-use-before-define
 import React from "react";
-import { StyleSheet } from "react-native";
-import { BottomNavigation } from "react-native-paper";
+import { StyleSheet, View } from "react-native";
+import { Appbar, BottomNavigation, Provider } from "react-native-paper";
 import Dashboard from "./bottom/Dashboard";
 import Profile from "./bottom/Profile";
 import Groups from "./bottom/Groups";
@@ -9,6 +9,9 @@ import { NavigationProp } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
   bar: {
+    backgroundColor: "#fff",
+  },
+  appbar: {
     backgroundColor: "#fff",
   },
 });
@@ -27,18 +30,23 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
 
   const renderScene = BottomNavigation.SceneMap({
     dashboard: Dashboard,
-    groups: Groups,
+    groups: Groups({ navigation: navigation }),
     profile: Profile,
   });
 
   return (
-    <BottomNavigation
-      navigationState={{ index, routes }}
-      activeColor="blue"
-      barStyle={styles.bar}
-      onIndexChange={setIndex}
-      renderScene={renderScene}
-    />
+    <Provider>
+      <Appbar.Header style={styles.appbar}>
+        <Appbar.Content title={routes[index].title} />
+      </Appbar.Header>
+      <BottomNavigation
+        navigationState={{ index, routes }}
+        activeColor="blue"
+        barStyle={styles.bar}
+        onIndexChange={setIndex}
+        renderScene={renderScene}
+      />
+    </Provider>
   );
 };
 

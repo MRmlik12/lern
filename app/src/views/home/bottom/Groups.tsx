@@ -1,13 +1,49 @@
 // eslint-disable-next-line no-use-before-define
 import React from "react";
-import { View } from "react-native";
-import { Text } from "react-native-paper";
+import { Portal, Provider, FAB } from "react-native-paper";
+import { NavigationProp } from "@react-navigation/native";
 
-const Groups: React.FC = () => {
+interface GroupsProps {
+  navigation: NavigationProp<any>;
+}
+
+const GroupsFAB: React.FC<GroupsProps> = ({ navigation }) => {
+  const [state, setState] = React.useState({ open: false });
+  const onStateChange = ({ open }: any) => setState({ open });
+
+  const fabActions = [
+    {
+      icon: "account-group-outline",
+      label: "Create group",
+      onPress: () => navigation.navigate("CreateGroup"),
+    },
+    {
+      icon: "account-multiple-plus-outline",
+      label: "Join to group",
+      onPress: () => navigation.navigate("JoinGroup"),
+    },
+  ];
+
   return (
-    <View>
-      <Text>Groups</Text>
-    </View>
+    <Provider>
+      <Portal>
+        <FAB.Group
+          visible={true}
+          open={state.open}
+          icon={"plus"}
+          actions={fabActions}
+          onStateChange={onStateChange}
+        />
+      </Portal>
+    </Provider>
+  );
+};
+
+const Groups: React.FC<GroupsProps> = ({ navigation }) => {
+  return (
+    <Provider>
+      <GroupsFAB navigation={navigation} />
+    </Provider>
   );
 };
 
