@@ -1,40 +1,26 @@
 // eslint-disable-next-line no-use-before-define
 import React from "react";
-import { StyleSheet } from "react-native";
-import { Portal, Provider, FAB, Text } from "react-native-paper";
+import { Portal, Provider, FAB } from "react-native-paper";
+import { NavigationProp } from "@react-navigation/native";
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    flex: 1,
-    justifyContent: "center",
-  },
-  fab: {
-    position: "absolute",
-    margin: 16,
-    right: 0,
-    bottom: 0,
-  },
-  noGroupsText: {
-    textAlign: "center",
-  },
-});
+interface GroupsProps {
+  navigation: NavigationProp<any>;
+}
 
-const GroupsFAB: React.FC = () => {
+const GroupsFAB: React.FC<GroupsProps> = ({ navigation }) => {
   const [state, setState] = React.useState({ open: false });
-
   const onStateChange = ({ open }: any) => setState({ open });
 
   const fabActions = [
     {
-      icon: "plus",
+      icon: "account-group-outline",
       label: "Create group",
-      onPress: () => console.log("Clicked"),
+      onPress: () => navigation.navigate("CreateGroup"),
     },
     {
-      icon: "plus",
+      icon: "account-multiple-plus-outline",
       label: "Join to group",
-      onPress: () => console.log("Clicked"),
+      onPress: () => navigation.navigate("JoinGroup"),
     },
   ];
 
@@ -43,7 +29,6 @@ const GroupsFAB: React.FC = () => {
       <Portal>
         <FAB.Group
           visible={true}
-          style={styles.fab}
           open={state.open}
           icon={"plus"}
           actions={fabActions}
@@ -54,12 +39,11 @@ const GroupsFAB: React.FC = () => {
   );
 };
 
-const Groups: React.FC = () => {
+const Groups: React.FC<GroupsProps> = ({ navigation }) => {
   return (
-      <Provider>
-        <GroupsFAB />
-        <Text style={styles.noGroupsText}>You have no groups :(</Text>
-      </Provider>
+    <Provider>
+      <GroupsFAB navigation={navigation} />
+    </Provider>
   );
 };
 
