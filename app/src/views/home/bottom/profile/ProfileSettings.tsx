@@ -20,7 +20,7 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({ navigation }) => {
       <ScrollView>
         <BasicInformation />
         <PasswordChange navigation={navigation} />
-        <DeleteAccount />
+        <DeleteAccount navigation={navigation} />
       </ScrollView>
     </View>
   );
