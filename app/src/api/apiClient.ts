@@ -1,5 +1,5 @@
 import axios from "axios";
-import { saveToken } from "../utils/tokenUtil";
+import { getToken, saveToken } from "../utils/tokenUtil";
 
 const BASE_URL = "http://192.168.1.212:5000";
 
@@ -49,4 +49,24 @@ export const register = async (
   await saveToken(response.data);
 
   return true;
+};
+
+export const createGroup = async (groupName: string): Promise<string> => {
+  const response = await axios.request<string>({
+    method: "POST",
+    baseURL: BASE_URL,
+    url: "group/CreateGroup",
+    headers: {
+      "Content-Type": "application/json",
+      "Authentication": `Bearer ${await getToken()}`
+    },
+    data: {
+      name: groupName,
+    },
+  });
+
+  if (response.status == 200)
+    return response.data;
+
+  return "";
 };
