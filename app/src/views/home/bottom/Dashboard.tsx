@@ -1,10 +1,13 @@
 import React from "react";
 import { View } from "react-native";
-import { Text } from "react-native-paper";
+import { Appbar, Text } from "react-native-paper";
 
 const Dashboard: React.FC = () => {
   return (
     <View>
+      <Appbar.Header style={{ backgroundColor: "#fff" }}>
+        <Appbar.Content title="Dashboard" />
+      </Appbar.Header>
       <Text>Dashboard</Text>
     </View>
   );

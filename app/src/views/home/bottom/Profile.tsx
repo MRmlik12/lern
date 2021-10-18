@@ -1,14 +1,25 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 import ProfileInfo from "../../../components/home/profile/ProfileInfo";
 import ProfileSettings from "../../../components/home/profile/ProfileSettings";
+import { Appbar } from "react-native-paper";
+import { MaterialBottomTabNavigationProp } from "@react-navigation/material-bottom-tabs/lib/typescript/src/types";
 
-const Profile: React.FC = () => {
+interface ProfileProps {
+  navigation: MaterialBottomTabNavigationProp<any>;
+}
+
+const Profile: React.FC<ProfileProps> = ({ navigation }) => {
   return (
-    <ScrollView>
-      <ProfileInfo />
-      <ProfileSettings />
-    </ScrollView>
+    <View>
+      <Appbar.Header style={{ backgroundColor: "#fff" }}>
+        <Appbar.Content title="Profile" />
+      </Appbar.Header>
+      <ScrollView>
+        <ProfileInfo />
+        <ProfileSettings />
+      </ScrollView>
+    </View>
   );
 };
 
