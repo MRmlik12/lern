@@ -38,7 +38,7 @@ const ProfileMore: React.FC<ProfileMoreProps> = ({ navigation }) => {
             left={(props) => (
               <List.Icon {...props} icon="information-outline" />
             )}
-            onPress={() => console.log("Hello")}
+            onPress={() => navigation.navigate("ProfileAbout")}
           />
           <List.Item
             title="Log out"
