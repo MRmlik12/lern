@@ -58,15 +58,14 @@ export const createGroup = async (groupName: string): Promise<string> => {
     url: "group/CreateGroup",
     headers: {
       "Content-Type": "application/json",
-      "Authentication": `Bearer ${await getToken()}`
+      Authentication: `Bearer ${await getToken()}`,
     },
     data: {
       name: groupName,
     },
   });
 
-  if (response.status == 200)
-    return response.data;
+  if (response.status === 200) return response.data;
 
   return "";
 };

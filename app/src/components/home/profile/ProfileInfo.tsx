@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Avatar, Caption, Card, Headline } from "react-native-paper";
-import { FlatGrid, SectionGrid } from "react-native-super-grid";
+import { FlatGrid } from "react-native-super-grid";
 
 const styles = StyleSheet.create({
   card: {

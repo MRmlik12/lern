@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FAB, Portal, Provider } from "react-native-paper";
 import CreateGroup from "../../../views/home/bottom/groups/CreateGroup";
 
@@ -21,18 +21,18 @@ const GroupsFAB = () => {
   ];
 
   return (
-      <Provider>
-        {createGroupVisible ? <CreateGroup /> : null}
-        <Portal>
-          <FAB.Group
-            visible={true}
-            open={state.open}
-            icon={"plus"}
-            actions={fabActions}
-            onStateChange={onStateChange}
-          />
-        </Portal>
-      </Provider>
+    <Provider>
+      {createGroupVisible ? <CreateGroup /> : null}
+      <Portal>
+        <FAB.Group
+          visible={true}
+          open={state.open}
+          icon={"plus"}
+          actions={fabActions}
+          onStateChange={onStateChange}
+        />
+      </Portal>
+    </Provider>
   );
 };
 

@@ -1,6 +1,12 @@
 import React from "react";
 import { ToastAndroid, View } from "react-native";
-import { Button, Dialog, TextInput, Portal, Provider } from "react-native-paper";
+import {
+  Button,
+  Dialog,
+  TextInput,
+  Portal,
+  Provider,
+} from "react-native-paper";
 import { isFalsy } from "utility-types";
 import { createGroup } from "../../../../api/apiClient";
 
@@ -24,7 +30,7 @@ const CreateGroup: React.FC = () => {
     }
 
     hideDialog();
-  }
+  };
 
   return (
     <Provider>
@@ -38,7 +44,7 @@ const CreateGroup: React.FC = () => {
                 value={groupName}
                 error={isError}
                 mode="outlined"
-                onChangeText={text => setGroupName(text)}
+                onChangeText={(text) => setGroupName(text)}
               />
             </Dialog.Content>
             <Dialog.Actions>
