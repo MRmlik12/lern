@@ -5,9 +5,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 import Register from "./views/Register";
 import Home from "./views/home/Home";
-import CreateGroup from "./views/home/bottom/groups/JoinGroup";
 import { RecoilRoot } from "recoil";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ProfileSettings from "./views/home/bottom/profile/ProfileSettings";
 
 const theme = {
   ...DefaultTheme,
@@ -42,14 +42,9 @@ export default function App(): ReactElement {
               options={{ title: "Register", headerShown: false }}
             />
             <Stack.Screen
-              name="CreateGroup"
-              component={CreateGroup}
-              options={{ title: "CreateGroup" }}
-            />
-            <Stack.Screen
-              name="JoinGroup"
-              component={CreateGroup}
-              options={{ title: "CreateGroup" }}
+              name="ProfileSettings"
+              component={ProfileSettings}
+              options={{ title: "ProfileSettings", headerShown: false }}
             />
           </Stack.Navigator>
         </PaperProvider>

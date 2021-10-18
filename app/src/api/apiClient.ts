@@ -51,6 +51,58 @@ export const register = async (
   return true;
 };
 
+export const changePassword = async (
+  oldPassword: string,
+  newPassword: string
+): Promise<boolean> => {
+  const response = await axios.request<string>({
+    method: "POST",
+    baseURL: BASE_URL,
+    url: "user/ChangePassword",
+    headers: {
+      "Content-Type": "application/json",
+      Authentication: `Bearer ${await getToken()}`,
+    },
+    data: {
+      oldPassword: oldPassword,
+      newPassword: newPassword,
+    },
+  });
+
+  return response.status !== 200;
+};
+
+export const changeUsername = async (newUsername: string): Promise<boolean> => {
+  const response = await axios.request<string>({
+    method: "PUT",
+    baseURL: BASE_URL,
+    url: "user/ChangeUsername",
+    headers: {
+      "Content-Type": "application/json",
+      Authentication: `Bearer ${await getToken()}`,
+    },
+    data: {
+      newUsername: newUsername,
+    },
+  });
+
+  return response.status !== 200;
+};
+
+export const deleteUser = async (): Promise<boolean> => {
+  const response = await axios.request<string>({
+    method: "PUT",
+    baseURL: BASE_URL,
+    url: "user/DeleteUser",
+    headers: {
+      "Content-Type": "application/json",
+      Authentication: `Bearer ${await getToken()}`,
+    },
+  });
+
+  return response.status !== 200;
+};
+
 export const createGroup = async (groupName: string): Promise<string> => {
   const response = await axios.request<string>({
     method: "POST",
