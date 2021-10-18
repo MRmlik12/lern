@@ -69,3 +69,20 @@ export const createGroup = async (groupName: string): Promise<string> => {
 
   return "";
 };
+
+export const joinGroup = async (code: string): Promise<boolean> => {
+  const response = await axios.request<string>({
+    method: "POST",
+    baseURL: BASE_URL,
+    url: "group/user/UserJoin",
+    headers: {
+      "Content-Type": "application/json",
+      Authentication: `Bearer ${await getToken()}`,
+    },
+    data: {
+      code: code,
+    },
+  });
+
+  return response.status === 200;
+};
