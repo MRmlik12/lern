@@ -1,6 +1,12 @@
 import React from "react";
 import { ToastAndroid, View } from "react-native";
-import { Button, Dialog, Portal, Provider, Text, TextInput } from "react-native-paper";
+import {
+  Button,
+  Dialog,
+  Portal,
+  Provider,
+  TextInput,
+} from "react-native-paper";
 import { joinGroup } from "../../../../api/apiClient";
 import { isFalsy } from "utility-types";
 
