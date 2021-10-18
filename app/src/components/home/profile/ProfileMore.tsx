@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Card, List } from "react-native-paper";
+import { MaterialBottomTabNavigationProp } from "@react-navigation/material-bottom-tabs/lib/typescript/src/types";
 
 const styles = StyleSheet.create({
   card: {
@@ -13,7 +14,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const ProfileSettings: React.FC = () => {
+interface ProfileMoreProps {
+  navigation: MaterialBottomTabNavigationProp<any>;
+}
+
+const ProfileMore: React.FC<ProfileMoreProps> = ({ navigation }) => {
   return (
     <Card style={styles.card}>
       <Card.Content>
@@ -21,7 +26,7 @@ const ProfileSettings: React.FC = () => {
           <List.Item
             title="User settings"
             left={(props) => <List.Icon {...props} icon="account-outline" />}
-            onPress={() => console.log("Hello")}
+            onPress={() => navigation.navigate("ProfileSettings")}
           />
           <List.Item
             title="App settings"
@@ -46,4 +51,4 @@ const ProfileSettings: React.FC = () => {
   );
 };
 
-export default ProfileSettings;
+export default ProfileMore;
