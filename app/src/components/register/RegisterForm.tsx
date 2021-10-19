@@ -4,7 +4,6 @@ import { View, StyleSheet, ToastAndroid } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { register } from "../../api/apiClient";
 import { NavigationProp } from "@react-navigation/native";
-import { Form } from "formik";
 
 interface RegisterProps {
   navigation: NavigationProp<any>;
@@ -41,39 +40,37 @@ const RegisterForm: React.FC<RegisterProps> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Form onSubmit={handleRegister}>
-        <TextInput
-          style={styles.formItems}
-          label="Username"
-          mode="outlined"
-          placeholder="example"
-          value={username}
-          onChangeText={(text) => setUsername(text)}
-        />
-        <TextInput
-          style={styles.formItems}
-          label="Email"
-          mode="outlined"
-          placeholder="example@example.com"
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-        />
-        <TextInput
-          style={styles.formItems}
-          label="Password"
-          mode="outlined"
-          secureTextEntry={true}
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-        />
-        <Button
-          style={styles.formItems}
-          onPress={handleRegister}
-          mode="contained"
-        >
-          Register
-        </Button>
-      </Form>
+      <TextInput
+        style={styles.formItems}
+        label="Username"
+        mode="outlined"
+        placeholder="example"
+        value={username}
+        onChangeText={(text) => setUsername(text)}
+      />
+      <TextInput
+        style={styles.formItems}
+        label="Email"
+        mode="outlined"
+        placeholder="example@example.com"
+        value={email}
+        onChangeText={(text) => setEmail(text)}
+      />
+      <TextInput
+        style={styles.formItems}
+        label="Password"
+        mode="outlined"
+        secureTextEntry={true}
+        value={password}
+        onChangeText={(text) => setPassword(text)}
+      />
+      <Button
+        style={styles.formItems}
+        onPress={handleRegister}
+        mode="contained"
+      >
+        Register
+      </Button>
     </View>
   );
 };
