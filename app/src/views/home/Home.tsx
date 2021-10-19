@@ -7,6 +7,8 @@ import Groups from "./bottom/Groups";
 import { NavigationProp } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { isFalsy } from "utility-types";
+import { getToken } from "../../utils/tokenUtil";
 
 interface HomeProps {
   navigation: NavigationProp<any>;
@@ -15,6 +17,17 @@ interface HomeProps {
 const Tab = createMaterialBottomTabNavigator();
 
 const Home: React.FC<HomeProps> = ({ navigation }) => {
+  const verifyTokenExisting = async () => {
+    if (isFalsy(await getToken())) {
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "Login" }],
+      });
+    }
+  };
+
+  verifyTokenExisting().then();
+
   return (
     <Provider>
       <Tab.Navigator
