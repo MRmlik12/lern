@@ -9,6 +9,7 @@ import { RecoilRoot } from "recoil";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ProfileSettings from "./views/home/bottom/profile/ProfileSettings";
 import ProfileAbout from "./views/home/bottom/profile/ProfileAbout";
+import CreateSet from "./views/home/bottom/dashboard/CreateSet";
 
 const theme = {
   ...DefaultTheme,
@@ -51,6 +52,11 @@ export default function App(): ReactElement {
               name="ProfileAbout"
               component={ProfileAbout}
               options={{ title: "ProfileAbout", headerShown: false }}
+            />
+            <Stack.Screen
+              name="CreateSet"
+              component={CreateSet}
+              options={{ title: "CreateSet", headerShown: false }}
             />
           </Stack.Navigator>
         </PaperProvider>

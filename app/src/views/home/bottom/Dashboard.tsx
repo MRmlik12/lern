@@ -1,15 +1,24 @@
 import React from "react";
 import { View } from "react-native";
-import { Appbar, Text } from "react-native-paper";
+import { Appbar, Provider, Text } from "react-native-paper";
+import CreateSetFAB from "../../../components/home/dashboard/CreateSetFAB";
+import { MaterialBottomTabNavigationProp } from "@react-navigation/material-bottom-tabs/lib/typescript/src/types";
 
-const Dashboard: React.FC = () => {
+interface DashboardProps {
+  navigation: MaterialBottomTabNavigationProp<any>;
+}
+
+const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
   return (
-    <View>
+    <Provider>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
         <Appbar.Content title="Dashboard" />
       </Appbar.Header>
-      <Text>Dashboard</Text>
-    </View>
+      <View>
+        <Text>Dashboard</Text>
+      </View>
+      <CreateSetFAB navigation={navigation} />
+    </Provider>
   );
 };
 
