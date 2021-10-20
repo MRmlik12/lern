@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { StyleSheet } from "react-native";
 import { FAB, Portal, Provider } from "react-native-paper";
 import { MaterialBottomTabNavigationProp } from "@react-navigation/material-bottom-tabs/lib/typescript/src/types";

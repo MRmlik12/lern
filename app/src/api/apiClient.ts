@@ -58,10 +58,10 @@ export const changePassword = async (
   const response = await axios.request<string>({
     method: "POST",
     baseURL: BASE_URL,
-    url: "user/ChangePassword",
+    url: "/user/ChangePassword",
     headers: {
       "Content-Type": "application/json",
-      Authentication: `Bearer ${await getToken()}`,
+      Authorization: `Bearer ${await getToken()}`,
     },
     data: {
       oldPassword: oldPassword,
@@ -76,10 +76,10 @@ export const changeUsername = async (newUsername: string): Promise<boolean> => {
   const response = await axios.request<string>({
     method: "PUT",
     baseURL: BASE_URL,
-    url: "user/ChangeUsername",
+    url: "/user/ChangeUsername",
     headers: {
       "Content-Type": "application/json",
-      Authentication: `Bearer ${await getToken()}`,
+      Authorization: `Bearer ${await getToken()}`,
     },
     data: {
       newUsername: newUsername,
@@ -93,10 +93,10 @@ export const deleteUser = async (): Promise<boolean> => {
   const response = await axios.request<string>({
     method: "PUT",
     baseURL: BASE_URL,
-    url: "user/DeleteUser",
+    url: "/user/DeleteUser",
     headers: {
       "Content-Type": "application/json",
-      Authentication: `Bearer ${await getToken()}`,
+      Authorization: `Bearer ${await getToken()}`,
     },
   });
 
@@ -107,10 +107,10 @@ export const createGroup = async (groupName: string): Promise<string> => {
   const response = await axios.request<string>({
     method: "POST",
     baseURL: BASE_URL,
-    url: "group/CreateGroup",
+    url: "/group/CreateGroup",
     headers: {
       "Content-Type": "application/json",
-      Authentication: `Bearer ${await getToken()}`,
+      Authorization: `Bearer ${await getToken()}`,
     },
     data: {
       name: groupName,
@@ -126,13 +126,38 @@ export const joinGroup = async (code: string): Promise<boolean> => {
   const response = await axios.request<string>({
     method: "POST",
     baseURL: BASE_URL,
-    url: "group/user/UserJoin",
+    url: "/group/user/UserJoin",
     headers: {
       "Content-Type": "application/json",
-      Authentication: `Bearer ${await getToken()}`,
+      Authorization: `Bearer ${await getToken()}`,
     },
     data: {
       code: code,
+    },
+  });
+
+  return response.status === 200;
+};
+
+export const createSet = async (
+  title: string,
+  language: string,
+  tags: Array<string>,
+  items: Array<Object>
+): Promise<boolean> => {
+  const response = await axios.request<string>({
+    method: "POST",
+    baseURL: BASE_URL,
+    url: "/set/CreateSet",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${await getToken()}`,
+    },
+    data: {
+      title: title,
+      language: language,
+      tags: tags,
+      items: items,
     },
   });
 

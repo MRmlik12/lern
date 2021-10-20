@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollView, View } from "react-native";
 import { Appbar } from "react-native-paper";
 import { MaterialBottomTabNavigationProp } from "@react-navigation/material-bottom-tabs/lib/typescript/src/types";
-import CreateSetForm from "./CreateSetForm";
+import CreateSetForm from "../../../../components/home/dashboard/set/CreateSetForm";
 
 interface CreateSetProps {
   navigation: MaterialBottomTabNavigationProp<any>;
@@ -16,7 +16,7 @@ const CreateSet: React.FC<CreateSetProps> = ({ navigation }) => {
         <Appbar.Content title="Create set" />
       </Appbar.Header>
       <ScrollView>
-        <CreateSetForm />
+        <CreateSetForm navigation={navigation} />
       </ScrollView>
     </View>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { Appbar, Portal, Provider, Text } from "react-native-paper";
+import { Appbar, Provider, Text } from "react-native-paper";
 import CreateSetFAB from "../../../components/home/dashboard/CreateSetFAB";
 import { MaterialBottomTabNavigationProp } from "@react-navigation/material-bottom-tabs/lib/typescript/src/types";
 
@@ -16,7 +16,6 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
       </Appbar.Header>
       <View>
         <Text>Dashboard</Text>
-
       </View>
       <CreateSetFAB navigation={navigation} />
     </Provider>
