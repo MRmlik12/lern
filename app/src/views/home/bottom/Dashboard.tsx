@@ -16,7 +16,7 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
         <Appbar.Content title="Dashboard" />
       </Appbar.Header>
       <View>
-        <SetsCollection title="Your Sets" />
+        <SetsCollection title="Your Sets" navigation={navigation} />
       </View>
       <CreateSetFAB navigation={navigation} />
     </Provider>

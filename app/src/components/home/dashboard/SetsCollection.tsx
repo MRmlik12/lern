@@ -11,6 +11,12 @@ import {
 import { ActivityIndicator, Card, Paragraph, Title } from "react-native-paper";
 import { getUserSetCollection } from "../../../api/apiClient";
 import { SetCollectionResponse } from "../../../api/models/setCollectionResponse";
+import { MaterialBottomTabNavigationProp } from "@react-navigation/material-bottom-tabs/lib/typescript/src/types";
+import { useRecoilState } from "recoil";
+import {
+  dashboardUserCollectionPage,
+  dashboardUserCollectionRefresh,
+} from "../../../states";
 
 const styles = StyleSheet.create({
   container: {
@@ -24,13 +30,28 @@ const styles = StyleSheet.create({
 
 interface SetsCollectionProps {
   title: string;
+  navigation: MaterialBottomTabNavigationProp<any>;
 }
 
-const SetsCollection: React.FC<SetsCollectionProps> = ({ title }) => {
+const SetsCollection: React.FC<SetsCollectionProps> = ({
+  title,
+  navigation,
+}) => {
   const [items, setItem] = React.useState<Array<SetCollectionResponse>>([]);
   const [loading, setLoading] = React.useState(true);
-  let [page, setPage] = React.useState(1);
-  let firstLaunch = true;
+  let [page, setPage] = useRecoilState(dashboardUserCollectionPage);
+  const [firstLaunch, setFirstLaunch] = useRecoilState(
+    dashboardUserCollectionRefresh
+  );
+
+  const handleCardPress = (item: SetCollectionResponse) => {
+    console.log(item.id);
+    navigation.navigate("SetLearn", {
+      params: {
+        setId: item.id,
+      },
+    });
+  };
 
   const getSetCollection = async () => {
     const sets = await getUserSetCollection(page);
@@ -69,7 +90,7 @@ const SetsCollection: React.FC<SetsCollectionProps> = ({ title }) => {
   const onStart = async () => {
     if (firstLaunch) {
       await getSetCollection();
-      firstLaunch = false;
+      setFirstLaunch(false);
     }
   };
 
@@ -82,7 +103,7 @@ const SetsCollection: React.FC<SetsCollectionProps> = ({ title }) => {
       <ScrollView horizontal={true} onScroll={onScroll}>
         {items.map((item, index) => {
           return (
-            <Card style={styles.card} key={index}>
+            <Card style={styles.card} key={index} onPress={() => handleCardPress(item)}>
               <Card.Title title={item.title} />
               <Card.Content>
                 <Paragraph>Language: {item.language}</Paragraph>
