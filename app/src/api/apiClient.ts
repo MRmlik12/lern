@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getToken, saveToken } from "../utils/tokenUtil";
+import { SetCollectionResponse } from "./models/setCollectionResponse";
 
 const BASE_URL = "http://192.168.1.212:5000";
 
@@ -162,4 +163,27 @@ export const createSet = async (
   });
 
   return response.status === 200;
+};
+
+export const getUserSetCollection = async (
+  page: number
+): Promise<Array<SetCollectionResponse>> => {
+  const response = await axios.request<Array<SetCollectionResponse>>({
+    method: "GET",
+    baseURL: BASE_URL,
+    url: "/user/set/GetUserSetCollection",
+    params: {
+      page: page,
+    },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${await getToken()}`,
+    },
+  });
+
+  if (response.status !== 200) {
+    throw new Error("Couldn't get user data");
+  }
+
+  return response.data;
 };
