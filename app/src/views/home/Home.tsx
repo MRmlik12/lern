@@ -33,7 +33,12 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
       <Tab.Navigator
         initialRouteName="Home"
         activeColor="blue"
-        barStyle={{ backgroundColor: "#fff" }}
+        barStyle={{
+          backgroundColor: "#fff",
+          width: "100%",
+          display: "flex",
+          bottom: 0,
+        }}
       >
         <Tab.Screen
           name="dashboard"
