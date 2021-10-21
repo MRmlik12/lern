@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using Lern.Core;
+using Lern.Core.Configuration;
 using Lern.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -47,7 +48,15 @@ namespace Lern.Api
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
-            containerBuilder.RegisterModule(new DefaultInfrastructureModule(Configuration["ConnectionString"]));
+            containerBuilder.RegisterModule(new DefaultInfrastructureModule(
+                Configuration["ConnectionString"],
+                new CloudinaryConfiguration
+                {
+                    Cloud = Configuration["Cloudinary:Cloud"],
+                    ApiKey = Configuration["Cloudinary:ApiKey"],
+                    ApiSecret = Configuration["Cloudinary:ApiSecret"]
+                }
+                ));
             containerBuilder.RegisterModule(new DefaultCoreModule(Configuration));
         }
 

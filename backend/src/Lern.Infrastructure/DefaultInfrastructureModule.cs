@@ -2,7 +2,10 @@ using System.Collections.Generic;
 using System.Reflection;
 using Autofac;
 using AutoMapper;
+using Lern.Core.Configuration;
 using Lern.Core.ProjectAggregate.User;
+using Lern.Infrastructure.Cloudinary;
+using Lern.Infrastructure.Cloudinary.Interfaces;
 using Lern.Infrastructure.Database;
 using Lern.Infrastructure.Database.Interfaces;
 using Lern.Infrastructure.Database.Repositories;
@@ -18,12 +21,14 @@ namespace Lern.Infrastructure
     {
         private readonly List<Assembly> _assemblies = new();
         private readonly string _dbConnectionString;
+        private readonly CloudinaryConfiguration _cloudinaryConfiguration;
 
-        public DefaultInfrastructureModule(string dbConnectionString)
+        public DefaultInfrastructureModule(string dbConnectionString, CloudinaryConfiguration cloudinaryConfiguration)
         {
             _assemblies.Add(Assembly.GetAssembly(typeof(User)));
             _assemblies.Add(Assembly.GetAssembly(typeof(RegisterUserRequestHandler)));
             _dbConnectionString = dbConnectionString;
+            _cloudinaryConfiguration = cloudinaryConfiguration;
         }
 
         protected override void Load(ContainerBuilder builder)
@@ -50,6 +55,15 @@ namespace Lern.Infrastructure
 
             builder.RegisterType<GroupRepository>()
                 .As<IGroupRepository>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<CloudinaryClient>()
+                .WithParameter("configuration", _cloudinaryConfiguration)
+                .As<ICloudinaryClient>()
+                .InstancePerLifetimeScope();
+            
+            builder.RegisterType<UploadAvatarService>()
+                .As<IUploadAvatarService>()
                 .InstancePerLifetimeScope();
 
             builder.Register(context => new MapperConfiguration(c => { c.AddProfile<AutoMapperProfile>(); }));

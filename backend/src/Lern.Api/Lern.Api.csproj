@@ -5,22 +5,22 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="6.3.0"/>
-        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0"/>
-        <PackageReference Include="AutoMapper" Version="10.1.1"/>
-        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1"/>
-        <PackageReference Include="FluentValidation" Version="10.3.3"/>
-        <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.3"/>
-        <PackageReference Include="MediatR" Version="9.0.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.Core" Version="2.2.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.10"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2"/>
-        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.13.1"/>
+        <PackageReference Include="Autofac" Version="6.3.0" />
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+        <PackageReference Include="AutoMapper" Version="10.1.1" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+        <PackageReference Include="FluentValidation" Version="10.3.3" />
+        <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.3" />
+        <PackageReference Include="MediatR" Version="9.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.Core" Version="2.2.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.10" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.13.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Lern.Core\Lern.Core.csproj"/>
-        <ProjectReference Include="..\Lern.Infrastructure\Lern.Infrastructure.csproj"/>
+        <ProjectReference Include="..\Lern.Core\Lern.Core.csproj" />
+        <ProjectReference Include="..\Lern.Infrastructure\Lern.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
