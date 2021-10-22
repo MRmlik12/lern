@@ -46,6 +46,13 @@ namespace Lern.Infrastructure.Database.Repositories
         {
             return await Sets.CountAsync(e => e.User.Id == userId);
         }
+        
+        public async Task<List<Set>> GetSetsAddedByLatest(DateTime date)
+            => await Sets.Where(e => e.CreatedAt <= date)
+                .OrderByDescending(e => e.CreatedAt)
+                .Take(10)
+                .Include(e => e.User)
+                .ToListAsync();
 
         public Task Update(Set set)
         {

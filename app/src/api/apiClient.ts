@@ -247,3 +247,21 @@ export const getSet = async (setId: string): Promise<GetSetResponse> => {
 
   return response.data;
 };
+
+export const getLatestSet = async (): Promise<Array<SetCollectionResponse>> => {
+  const response = await axios.request<GetSetResponse>({
+    method: "GET",
+    baseURL: BASE_URL,
+    url: "/set/GetLatestAddedSets",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${await getToken()}`,
+    },
+  });
+
+  if (response.status !== 200) {
+    throw new Error("Couldn't get sets data");
+  }
+
+  return response.data;
+};
