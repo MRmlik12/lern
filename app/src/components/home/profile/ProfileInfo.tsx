@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
-import { Avatar, Caption, Card, Headline } from "react-native-paper";
+import {
+  ActivityIndicator,
+  Avatar,
+  Caption,
+  Card,
+  Headline,
+} from "react-native-paper";
 import { FlatGrid } from "react-native-super-grid";
+import { userInfo } from "../../../api/apiClient";
 
 const styles = StyleSheet.create({
   card: {
@@ -29,36 +36,58 @@ const styles = StyleSheet.create({
 });
 
 const ProfileInfo: React.FC = () => {
-  const [items] = React.useState([
-    { name: "Groups", value: 0 },
-    { name: "Sets", value: 0 },
-    { name: "Created at", value: "2021/10/17" },
-  ]);
+  const [avatarUrl, setAvatarUrl] = React.useState("");
+  const [username, setUsername] = React.useState("");
+  const [items, setItems] = React.useState<any>();
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  const getUserInformation = async () => {
+    const user = await userInfo();
+    setAvatarUrl(user.avatarUrl);
+    setUsername(user.name);
+    setItems([
+      { name: "Groups", value: user.groupsCount },
+      { name: "Sets", value: user.setCount },
+      {
+        name: "Created at",
+        value: user.createdAt.toString(),
+      },
+    ]);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    getUserInformation().catch((err) => console.log(err));
+  }, []);
 
   return (
     <Card style={styles.card}>
-      <Card.Content>
-        <Avatar.Image
-          style={styles.avatar}
-          size={160}
-          source={{
-            uri: "https://earncashto.com/wp-content/uploads/2021/06/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png",
-          }}
-        />
-        <Headline style={styles.title}>Example</Headline>
-        <FlatGrid
-          itemDimension={120}
-          data={items}
-          fixed={true}
-          renderItem={(items) => (
-            <View>
-              <Caption style={styles.summaryText}>
-                <Headline>{items.item.name}:</Headline> {items.item.value}
-              </Caption>
-            </View>
-          )}
-        />
-      </Card.Content>
+      {isLoading ? (
+        <ActivityIndicator animating={isLoading} />
+      ) : (
+        <Card.Content>
+          <Avatar.Image
+            style={styles.avatar}
+            size={160}
+            source={{
+              uri: avatarUrl,
+            }}
+          />
+          <Headline style={styles.title}>{username}</Headline>
+          <FlatGrid
+            itemDimension={120}
+            data={items}
+            fixed={true}
+            renderItem={(items) => (
+              <View>
+                <Caption style={styles.summaryText}>
+                  <Headline>{items.item.name}:</Headline> {items.item.value}
+                </Caption>
+              </View>
+            )}
+          />
+        </Card.Content>
+      )}
     </Card>
   );
 };
