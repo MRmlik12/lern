@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const LearnMode: React.FC<LearnModeProps> = ({ navigation, route}) => {
+const LearnMode: React.FC<LearnModeProps> = ({ navigation, route }) => {
   const [setInfo, setSetInfo] = React.useState<GetSetResponse>();
   const [isLoading, setIsLoading] = React.useState(true);
 
