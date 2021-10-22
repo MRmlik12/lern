@@ -10,6 +10,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ProfileSettings from "./views/home/bottom/profile/ProfileSettings";
 import ProfileAbout from "./views/home/bottom/profile/ProfileAbout";
 import CreateSet from "./views/home/bottom/dashboard/CreateSet";
+import LearnMode from "./views/home/bottom/dashboard/LearnMode";
 
 const theme = {
   ...DefaultTheme,
@@ -57,6 +58,11 @@ export default function App(): ReactElement {
               name="CreateSet"
               component={CreateSet}
               options={{ title: "CreateSet", headerShown: false }}
+            />
+            <Stack.Screen
+              name="LearnMode"
+              component={LearnMode}
+              options={{ title: "LearnMode", headerShown: false }}
             />
           </Stack.Navigator>
         </PaperProvider>

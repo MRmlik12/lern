@@ -38,7 +38,11 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
       <View>
         <ActivityIndicator animating={isLoading} />
         {isLoading ? null : (
-          <SetsCollection title="Your Sets" items={userSetCollection} />
+          <SetsCollection
+            navigation={navigation}
+            title="Your Sets"
+            items={userSetCollection}
+          />
         )}
       </View>
       <CreateSetFAB navigation={navigation} />
