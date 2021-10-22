@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getToken, saveToken } from "../utils/tokenUtil";
 import { SetCollectionResponse } from "./models/setCollectionResponse";
+import { GetSetResponse } from "./models/getSetResponse";
 
 const BASE_URL = "http://192.168.1.212:5000";
 
@@ -174,6 +175,27 @@ export const getUserSetCollection = async (
     url: "/user/set/GetUserSetCollection",
     params: {
       page: page,
+    },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${await getToken()}`,
+    },
+  });
+
+  if (response.status !== 200) {
+    throw new Error("Couldn't get user data");
+  }
+
+  return response.data;
+};
+
+export const getSet = async (setId: string): Promise<GetSetResponse> => {
+  const response = await axios.request<GetSetResponse>({
+    method: "GET",
+    baseURL: BASE_URL,
+    url: "/set/GetSet",
+    params: {
+      setId: setId,
     },
     headers: {
       "Content-Type": "application/json",
