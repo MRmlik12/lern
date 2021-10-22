@@ -2,6 +2,7 @@ import axios from "axios";
 import { getToken, saveToken } from "../utils/tokenUtil";
 import { SetCollectionResponse } from "./models/setCollectionResponse";
 import { GetSetResponse } from "./models/getSetResponse";
+import { UserInformationResponse } from "./models/userInformationResponse";
 
 const BASE_URL = "http://192.168.1.212:5000";
 
@@ -103,6 +104,24 @@ export const deleteUser = async (): Promise<boolean> => {
   });
 
   return response.status !== 200;
+};
+
+export const userInfo = async (): Promise<UserInformationResponse> => {
+  const response = await axios.request<UserInformationResponse>({
+    method: "GET",
+    baseURL: BASE_URL,
+    url: "/user/GetUserInformation",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${await getToken()}`,
+    },
+  });
+
+  if (response.status !== 200) {
+    throw new Error("Couldn't get user data");
+  }
+
+  return response.data;
 };
 
 export const createGroup = async (groupName: string): Promise<string> => {
