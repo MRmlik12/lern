@@ -4,7 +4,7 @@ import { ActivityIndicator, Appbar, Provider } from "react-native-paper";
 import CreateSetFAB from "../../../components/home/dashboard/CreateSetFAB";
 import { MaterialBottomTabNavigationProp } from "@react-navigation/material-bottom-tabs/lib/typescript/src/types";
 import SetsCollection from "../../../components/home/dashboard/SetsCollection";
-import { getUserSetCollection } from "../../../api/apiClient";
+import { getLatestSet, getUserSetCollection } from "../../../api/apiClient";
 import { SetCollectionResponse } from "../../../api/models/setCollectionResponse";
 
 interface DashboardProps {
@@ -15,13 +15,20 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
   const [userSetCollection, setUserSetCollection] = React.useState<
     Array<SetCollectionResponse>
   >([]);
+  const [latestAdded, setLatestAdded] = React.useState<
+    Array<SetCollectionResponse>
+  >([]);
   const [isLoading, setIsLoading] = React.useState(false);
   let [page, setPage] = React.useState(1);
 
   const getSetCollection = async () => {
     const sets = await getUserSetCollection(page);
+    const latestSets = await getLatestSet();
     const concatSets = userSetCollection.concat(sets);
+
     setUserSetCollection(concatSets);
+    setLatestAdded(latestSets);
+
     setIsLoading(false);
     setPage(page++);
   };
@@ -36,12 +43,22 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
         <Appbar.Content title="Dashboard" />
       </Appbar.Header>
       <View>
-        <ActivityIndicator animating={isLoading} />
-        {isLoading ? null : (
+        {isLoading ? (
+          <ActivityIndicator animating={isLoading} />
+        ) : (
           <SetsCollection
             navigation={navigation}
-            title="Your Sets"
+            title="Your sets"
             items={userSetCollection}
+          />
+        )}
+        {isLoading ? (
+          <ActivityIndicator animating={isLoading} />
+        ) : (
+          <SetsCollection
+            navigation={navigation}
+            title="Latest added"
+            items={latestAdded}
           />
         )}
       </View>

@@ -13,6 +13,7 @@ namespace Lern.Infrastructure.Database.Interfaces
         Task<List<Set>> GetSetListByUserId(Guid userId, PaginationFilter paginationFilter);
         Task<Set> GetSetByIdAndUserId(Guid id, Guid userId);
         Task<int> GetUserSetCount(Guid userId);
+        Task<List<Set>> GetSetsAddedByLatest(DateTime date);
         Task Update(Set set);
         Task Delete(Set set);
     }
