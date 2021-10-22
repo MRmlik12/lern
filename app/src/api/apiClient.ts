@@ -249,7 +249,7 @@ export const getSet = async (setId: string): Promise<GetSetResponse> => {
 };
 
 export const getLatestSet = async (): Promise<Array<SetCollectionResponse>> => {
-  const response = await axios.request<GetSetResponse>({
+  const response = await axios.request<Array<SetCollectionResponse>>({
     method: "GET",
     baseURL: BASE_URL,
     url: "/set/GetLatestAddedSets",
