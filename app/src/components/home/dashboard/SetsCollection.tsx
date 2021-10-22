@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   ScrollView,
@@ -24,62 +24,40 @@ const styles = StyleSheet.create({
 
 interface SetsCollectionProps {
   title: string;
+  items: Array<SetCollectionResponse>;
 }
 
-const SetsCollection: React.FC<SetsCollectionProps> = ({ title }) => {
-  const [items, setItem] = React.useState<Array<SetCollectionResponse>>([]);
-  const [loading, setLoading] = React.useState(true);
-  let [page, setPage] = React.useState(1);
-  let firstLaunch = true;
+const SetsCollection: React.FC<SetsCollectionProps> = ({ title, items }) => {
+  // const isCloseToBottom = (
+  //   layoutMeasurement: NativeScrollSize,
+  //   contentOffset: NativeScrollPoint,
+  //   contentSize: NativeScrollSize
+  // ) => {
+  //   const paddingToBottom = 20;
+  //   return (
+  //     layoutMeasurement.height + contentOffset.y >=
+  //     contentSize.height - paddingToBottom
+  //   );
+  // };
 
-  const getSetCollection = async () => {
-    const sets = await getUserSetCollection(page);
-    const concatSets = items.concat(sets);
-    setItem(concatSets);
-    setLoading(false);
-    setPage(page++);
-  };
-
-  const isCloseToBottom = (
-    layoutMeasurement: NativeScrollSize,
-    contentOffset: NativeScrollPoint,
-    contentSize: NativeScrollSize
-  ) => {
-    const paddingToBottom = 20;
-    return (
-      layoutMeasurement.height + contentOffset.y >=
-      contentSize.height - paddingToBottom
-    );
-  };
-
-  const onScroll = async (
-    nativeEvent: NativeSyntheticEvent<NativeScrollEvent>
-  ) => {
-    const isReachingEnd = isCloseToBottom(
-      nativeEvent.nativeEvent.layoutMeasurement,
-      nativeEvent.nativeEvent.contentOffset,
-      nativeEvent.nativeEvent.contentSize
-    );
-
-    if (isReachingEnd) {
-      await getSetCollection();
-    }
-  };
-
-  const onStart = async () => {
-    if (firstLaunch) {
-      await getSetCollection();
-      firstLaunch = false;
-    }
-  };
-
-  onStart().catch((err) => console.log(err));
+  // const onScroll = async (
+  //   nativeEvent: NativeSyntheticEvent<NativeScrollEvent>
+  // ) => {
+  //   const isReachingEnd = isCloseToBottom(
+  //     nativeEvent.nativeEvent.layoutMeasurement,
+  //     nativeEvent.nativeEvent.contentOffset,
+  //     nativeEvent.nativeEvent.contentSize
+  //   );
+  //
+  //   if (isReachingEnd) {
+  //     await getSetCollection();
+  //   }
+  // };
 
   return (
     <View style={styles.container}>
       <Title>{title}</Title>
-      <ActivityIndicator animating={loading} />
-      <ScrollView horizontal={true} onScroll={onScroll}>
+      <ScrollView horizontal={true}>
         {items.map((item, index) => {
           return (
             <Card style={styles.card} key={index}>
