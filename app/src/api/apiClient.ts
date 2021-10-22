@@ -3,6 +3,7 @@ import { getToken, saveToken } from "../utils/tokenUtil";
 import { SetCollectionResponse } from "./models/setCollectionResponse";
 import { GetSetResponse } from "./models/getSetResponse";
 import { UserInformationResponse } from "./models/userInformationResponse";
+import { GroupCollectionItem } from "./models/groupCollectionItem";
 
 const BASE_URL = "http://192.168.1.212:5000";
 
@@ -119,6 +120,24 @@ export const userInfo = async (): Promise<UserInformationResponse> => {
 
   if (response.status !== 200) {
     throw new Error("Couldn't get user data");
+  }
+
+  return response.data;
+};
+
+export const getGroups = async (): Promise<Array<GroupCollectionItem>> => {
+  const response = await axios.request<Array<GroupCollectionItem>>({
+    method: "GET",
+    baseURL: BASE_URL,
+    url: "/user/group/GetUserGroupCollection",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${await getToken()}`,
+    },
+  });
+
+  if (response.status !== 200) {
+    throw new Error("Couldn't get data");
   }
 
   return response.data;

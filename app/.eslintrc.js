@@ -18,6 +18,7 @@ module.exports = {
     "arrow-body-style": "off",
     "prefer-arrow-callback": "off",
     "no-use-before-define": "off",
+    "import/no-duplicates": "off",
   },
   settings: {
     react: {

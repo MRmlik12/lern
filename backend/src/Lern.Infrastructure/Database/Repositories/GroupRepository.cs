@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -44,6 +45,13 @@ namespace Lern.Infrastructure.Database.Repositories
         public async Task<int> GetUserSetCount(Guid userId)
         {
             return await Groups.CountAsync(e => e.User.Id == userId);
+        }
+
+        public async Task<List<Group>> GetGroupsCollectionWhereUserIsIn(Guid userId)
+        {
+            return await Groups.Where(e => e.User.Id == userId)
+                .Include(e => e.User)
+                .ToListAsync();
         }
 
         public Task Update(Group group)
