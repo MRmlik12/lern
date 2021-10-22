@@ -10,12 +10,15 @@
     "prettier": "prettier --write ./src"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.2.0",
+    "@expo-google-fonts/kaushan-script": "^0.2.0",
     "@react-navigation/material-bottom-tabs": "^6.0.9",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.4",
     "@types/react-native-vector-icons": "^6.4.9",
     "axios": "^0.23.0",
     "expo": "~42.0.1",
+    "expo-font": "~9.2.1",
     "expo-secure-store": "~10.2.0",
     "expo-status-bar": "~1.0.4",
     "formik": "^2.2.9",

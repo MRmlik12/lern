@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-use-before-define
-import React from "react";
+import React, { useEffect } from "react";
 import { Provider } from "react-native-paper";
 import Dashboard from "./bottom/Dashboard";
 import Profile from "./bottom/Profile";
@@ -26,7 +26,9 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
     }
   };
 
-  verifyTokenExisting().then();
+  useEffect(() => {
+    verifyTokenExisting().then();
+  }, []);
 
   return (
     <Provider>
