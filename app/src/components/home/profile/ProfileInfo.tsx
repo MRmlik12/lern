@@ -13,12 +13,12 @@ import { userInfo } from "../../../api/apiClient";
 const styles = StyleSheet.create({
   card: {
     width: "95%",
-    margin: 5,
+    margin: 10,
     alignSelf: "center",
   },
   title: {
     textAlign: "center",
-    padding: 10,
+    padding: 5,
     fontSize: 30,
   },
   avatar: {
@@ -48,10 +48,6 @@ const ProfileInfo: React.FC = () => {
     setItems([
       { name: "Groups", value: user.groupsCount },
       { name: "Sets", value: user.setCount },
-      {
-        name: "Created at",
-        value: user.createdAt.toString(),
-      },
     ]);
     setIsLoading(false);
   };
@@ -81,7 +77,10 @@ const ProfileInfo: React.FC = () => {
             renderItem={(items) => (
               <View>
                 <Caption style={styles.summaryText}>
-                  <Headline>{items.item.name}:</Headline> {items.item.value}
+                  <Headline style={styles.summaryText}>
+                    {items.item.name}:
+                  </Headline>{" "}
+                  {items.item.value}
                 </Caption>
               </View>
             )}

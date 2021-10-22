@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Card, List } from "react-native-paper";
 import { MaterialBottomTabNavigationProp } from "@react-navigation/material-bottom-tabs/lib/typescript/src/types";
+import { clearTokens } from "../../../utils/tokenUtil";
 
 const styles = StyleSheet.create({
   card: {
@@ -19,6 +20,14 @@ interface ProfileMoreProps {
 }
 
 const ProfileMore: React.FC<ProfileMoreProps> = ({ navigation }) => {
+  const handleLogout = async () => {
+    await clearTokens();
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "Home" }],
+    });
+  };
+
   return (
     <Card style={styles.card}>
       <Card.Content>
@@ -43,7 +52,7 @@ const ProfileMore: React.FC<ProfileMoreProps> = ({ navigation }) => {
           <List.Item
             title="Log out"
             left={(props) => <List.Icon {...props} icon="exit-to-app" />}
-            onPress={() => console.log("Hello")}
+            onPress={handleLogout}
           />
         </>
       </Card.Content>
