@@ -42,6 +42,11 @@ namespace Lern.Infrastructure.Database.Repositories
             return await Sets.OrderBy(e => e.Id).Where(e => e.Id == id).Where(e => e.User.Id == userId).FirstAsync();
         }
 
+        public async Task<int> GetUserSetCount(Guid userId)
+        {
+            return await Sets.CountAsync(e => e.User.Id == userId);
+        }
+
         public Task Update(Set set)
         {
             Sets.Update(set);

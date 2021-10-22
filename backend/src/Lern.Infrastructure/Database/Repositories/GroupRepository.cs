@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Lern.Core.ProjectAggregate.Group;
 using Lern.Infrastructure.Database.Interfaces;
@@ -38,6 +39,11 @@ namespace Lern.Infrastructure.Database.Repositories
             return await Groups.Where(e => e.Id == groupId && e.User.Id == ownerId)
                 .Include(e => e.User)
                 .FirstAsync();
+        }
+
+        public async Task<int> GetUserSetCount(Guid userId)
+        {
+            return await Groups.CountAsync(e => e.User.Id == userId);
         }
 
         public Task Update(Group group)

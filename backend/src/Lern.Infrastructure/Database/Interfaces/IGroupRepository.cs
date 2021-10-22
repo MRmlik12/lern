@@ -10,6 +10,7 @@ namespace Lern.Infrastructure.Database.Interfaces
         Task<Group> GetGroupByCode(string code);
         Task<Group> GetGroupById(Guid id);
         Task<Group> GetGroupById(Guid ownerId, Guid groupId);
+        Task<int> GetUserSetCount(Guid userId);
         Task Update(Group group);
         Task Delete(Group group);
     }
