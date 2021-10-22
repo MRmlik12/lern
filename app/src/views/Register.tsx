@@ -10,10 +10,14 @@ interface RegisterProps {
 }
 
 const Register: React.FC<RegisterProps> = ({ navigation }) => {
-  const styles = StyleSheet.create({});
+  const styles = StyleSheet.create({
+    container: {
+      marginTop: "50%",
+    },
+  });
 
   return (
-    <View style={styles}>
+    <View style={styles.container}>
       <RegisterDescription />
       <RegisterForm navigation={navigation} />
     </View>
