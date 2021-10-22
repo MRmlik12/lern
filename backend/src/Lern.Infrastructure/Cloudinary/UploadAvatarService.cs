@@ -10,7 +10,7 @@ namespace Lern.Infrastructure.Cloudinary
     public class UploadAvatarService : IUploadAvatarService
     {
         private CloudinaryDotNet.Cloudinary Client { get; }
-        
+
         public UploadAvatarService(ICloudinaryClient cloudinary)
         {
             Client = cloudinary.Client;
@@ -23,7 +23,7 @@ namespace Lern.Infrastructure.Cloudinary
                 File = new FileDescription(userId.ToString(), avatar.OpenReadStream())
             };
             var uploadResult = await Client.UploadAsync(uploadParams);
-            
+
             return uploadResult.Url.ToString();
         }
     }

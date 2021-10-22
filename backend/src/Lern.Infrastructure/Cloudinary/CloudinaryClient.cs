@@ -7,7 +7,7 @@ namespace Lern.Infrastructure.Cloudinary
     public class CloudinaryClient : ICloudinaryClient
     {
         public CloudinaryDotNet.Cloudinary Client { get; }
-        
+
         public CloudinaryClient(CloudinaryConfiguration configuration)
         {
             var account = new Account(

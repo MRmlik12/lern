@@ -12,8 +12,7 @@ namespace Lern.Infrastructure.Handlers.Users
         private readonly IUserRepository _userRepository;
         private readonly ISetRepository _setRepository;
         private readonly IGroupRepository _groupRepository;
-        
-        
+
         public GetUserRequestHandler(
             IUserRepository userRepository,
             ISetRepository setRepository,
@@ -23,8 +22,9 @@ namespace Lern.Infrastructure.Handlers.Users
             _setRepository = setRepository;
             _groupRepository = groupRepository;
         }
-        
-        public async Task<UserInfoDto> Handle(GetUserInformationMediatorModel request, CancellationToken cancellationToken)
+
+        public async Task<UserInfoDto> Handle(GetUserInformationMediatorModel request,
+            CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetUserById(request.UserId);
             var setCount = await _setRepository.GetUserSetCount(request.UserId);
@@ -37,7 +37,7 @@ namespace Lern.Infrastructure.Handlers.Users
                 AvatarUrl = user.AvatarUrl,
                 CreatedAt = user.CreatedAt,
                 SetCount = setCount,
-                GroupsCount = groupsCount,
+                GroupsCount = groupsCount
             };
         }
     }

@@ -17,7 +17,7 @@ namespace Lern.Api.Controllers.Users.Settings
     {
         private readonly IMediator _mediator;
         private readonly IUnitOfWork _unitOfWork;
-        
+
         public UploadUserAvatarController(IMediator mediator, IUnitOfWork unitOfWork)
         {
             _mediator = mediator;
@@ -33,7 +33,7 @@ namespace Lern.Api.Controllers.Users.Settings
                 Avatar = file
             });
             await _unitOfWork.CompleteAsync();
-            
+
             return Ok();
         }
     }

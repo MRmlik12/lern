@@ -61,7 +61,7 @@ namespace Lern.Infrastructure
                 .WithParameter("configuration", _cloudinaryConfiguration)
                 .As<ICloudinaryClient>()
                 .InstancePerLifetimeScope();
-            
+
             builder.RegisterType<UploadAvatarService>()
                 .As<IUploadAvatarService>()
                 .InstancePerLifetimeScope();

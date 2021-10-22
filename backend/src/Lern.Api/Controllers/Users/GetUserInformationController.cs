@@ -14,12 +14,12 @@ namespace Lern.Api.Controllers.Users
     public class GetUserInformationController : ControllerBase
     {
         private readonly IMediator _mediator;
-        
+
         public GetUserInformationController(IMediator mediator)
         {
             _mediator = mediator;
         }
-        
+
         [HttpGet]
         public async Task<IActionResult> GetUserInformation([FromQuery] Guid? userId)
         {
@@ -27,7 +27,7 @@ namespace Lern.Api.Controllers.Users
             {
                 UserId = userId ?? Guid.Parse(User.FindFirst(ClaimTypes.PrimarySid)?.Value!)
             });
-            
+
             return Ok(user);
         }
     }

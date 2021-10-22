@@ -56,7 +56,7 @@ namespace Lern.Api
                     ApiKey = Configuration["Cloudinary:ApiKey"],
                     ApiSecret = Configuration["Cloudinary:ApiSecret"]
                 }
-                ));
+            ));
             containerBuilder.RegisterModule(new DefaultCoreModule(Configuration));
         }
 
