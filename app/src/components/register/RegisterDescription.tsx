@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-use-before-define
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { Text } from "react-native-paper";
+import { Paragraph } from "react-native-paper";
 
 const RegisterDescription: React.FC = () => {
   const styles = StyleSheet.create({
@@ -13,9 +13,9 @@ const RegisterDescription: React.FC = () => {
 
   return (
     <View>
-      <Text style={styles.descriptionText}>
+      <Paragraph style={styles.descriptionText}>
         To register account, please fill the all fields
-      </Text>
+      </Paragraph>
     </View>
   );
 };

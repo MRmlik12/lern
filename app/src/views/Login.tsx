@@ -10,10 +10,14 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({ navigation }) => {
-  const styles = StyleSheet.create({});
+  const styles = StyleSheet.create({
+    container: {
+      marginTop: "40%",
+    },
+  });
 
   return (
-    <View style={styles}>
+    <View style={styles.container}>
       <LoginLogo />
       <LoginForm navigation={navigation} />
     </View>
