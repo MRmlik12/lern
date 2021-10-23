@@ -3,6 +3,7 @@ import { StyleSheet, ScrollView, View } from "react-native";
 import { Card, Paragraph, Title } from "react-native-paper";
 import { SetCollectionResponse } from "../../../api/models/setCollectionResponse";
 import { MaterialBottomTabNavigationProp } from "@react-navigation/material-bottom-tabs/lib/typescript/src/types";
+import { Icon } from "react-native-vector-icons/Icon";
 
 const styles = StyleSheet.create({
   container: {
@@ -11,6 +12,7 @@ const styles = StyleSheet.create({
   card: {
     marginRight: 5,
     marginLeft: 5,
+    width: "15%",
   },
 });
 
@@ -61,7 +63,7 @@ const SetsCollection: React.FC<SetsCollectionProps> = ({
   return (
     <View style={styles.container}>
       <Title>{title}</Title>
-      <ScrollView horizontal={true}>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         {items.map((item, index) => {
           return (
             <Card
@@ -71,8 +73,9 @@ const SetsCollection: React.FC<SetsCollectionProps> = ({
             >
               <Card.Title title={item.title} />
               <Card.Content>
-                <Paragraph>Language: {item.language}</Paragraph>
-                <Paragraph>Tags: {item.tags.join(" ")}</Paragraph>
+                <Paragraph>{item.language}</Paragraph>
+                <Paragraph>{item.tags.join(" ")}</Paragraph>
+                <Paragraph>{item.userName}</Paragraph>
               </Card.Content>
             </Card>
           );
