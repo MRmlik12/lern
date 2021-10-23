@@ -44,7 +44,9 @@ const LearnMode: React.FC<LearnModeProps> = ({ navigation, route }) => {
       </Appbar.Header>
       <View>
         <ActivityIndicator animating={isLoading} />
-        {isLoading ? null : <LearnCard items={setInfo?.items!} />}
+        {isLoading ? null : (
+          <LearnCard items={setInfo?.items!} navigation={navigation} />
+        )}
       </View>
     </View>
   );
