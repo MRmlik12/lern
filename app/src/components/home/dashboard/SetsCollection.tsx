@@ -3,7 +3,6 @@ import { StyleSheet, ScrollView, View } from "react-native";
 import { Card, Paragraph, Title } from "react-native-paper";
 import { SetCollectionResponse } from "../../../api/models/setCollectionResponse";
 import { MaterialBottomTabNavigationProp } from "@react-navigation/material-bottom-tabs/lib/typescript/src/types";
-import { Icon } from "react-native-vector-icons/Icon";
 
 const styles = StyleSheet.create({
   container: {

@@ -110,10 +110,7 @@ const CreateSetForm: React.FC<CreateSetFormProps> = ({ navigation }) => {
             }}
           >
             Phrases{"  "}
-            <Icon
-              name="plus-circle-outline"
-              size={20}
-            />
+            <Icon name="plus-circle-outline" size={20} />
           </List.Subheader>
         </View>
         <ScrollView>
