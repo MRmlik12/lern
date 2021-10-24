@@ -31,14 +31,7 @@ const BasicInformation: React.FC<BasicInformationProps> = ({ name }) => {
     const avatar = await getPhoto();
     if (avatar?.cancelled) return;
 
-    const formData = new FormData();
-    formData.append("file", {
-      uri: avatar?.uri,
-      filename: "avatar.jpeg",
-      type: "image/jpg",
-    });
-
-    const response = await changeAvatar(formData);
+    const response = await changeAvatar(avatar?.base64!);
 
     if (response) {
       ToastAndroid.show("Uploaded!", ToastAndroid.SHORT);

@@ -93,14 +93,16 @@ export const changeUsername = async (newUsername: string): Promise<boolean> => {
   return response.status !== 200;
 };
 
-export const changeAvatar = async (avatar: FormData): Promise<boolean> => {
+export const changeAvatar = async (avatar: string): Promise<boolean> => {
   const response = await axios.request<string>({
     method: "POST",
     baseURL: BASE_URL,
     url: "/user/settings/UploadUserAvatar",
-    data: avatar,
+    data: {
+      avatarData: avatar,
+    },
     headers: {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/json",
       Authorization: `Bearer ${await getToken()}`,
     },
   });

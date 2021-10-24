@@ -15,6 +15,7 @@ export const getPhoto =
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [4, 3],
+      base64: true,
       quality: 1,
     });
   };

@@ -6,6 +6,6 @@ namespace Lern.Infrastructure.Cloudinary.Interfaces
 {
     public interface IUploadAvatarService
     {
-        Task<string> UploadAvatar(IFormFile avatar, Guid userId);
+        Task<string> UploadAvatar(string avatar, Guid userId);
     }
 }
