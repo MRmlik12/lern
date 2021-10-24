@@ -49,17 +49,17 @@ namespace Lern.Api
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterModule(new DefaultInfrastructureModule(
-                Configuration["ConnectionString"],
+                Environment.GetEnvironmentVariable("POSTGRES_STRING") ?? Configuration["ConnectionString"],
                 new CloudinaryConfiguration
                 {
-                    Cloud = Configuration["Cloudinary:Cloud"],
-                    ApiKey = Configuration["Cloudinary:ApiKey"],
-                    ApiSecret = Configuration["Cloudinary:ApiSecret"]
+                    Cloud = Environment.GetEnvironmentVariable("CLOUDINARY_CLOUD") ?? Configuration["Cloudinary:Cloud"],
+                    ApiKey = Environment.GetEnvironmentVariable("CLOUDINARY_APIKEY") ?? Configuration["Cloudinary:ApiKey"],
+                    ApiSecret = Environment.GetEnvironmentVariable("CLOUDINARY_APISECRET") ?? Configuration["Cloudinary:ApiSecret"]
                 },
                 new AzureComputerVisionConfiguration
                 {
-                    SubscriptionKey = Configuration["AzureComputerVision:SubscriptionKey"],
-                    Endpoint = Configuration["AzureComputerVision:Endpoint"]
+                    SubscriptionKey = Environment.GetEnvironmentVariable("AZURE_SUBSCRIPTIONKEY") ?? Configuration["AzureComputerVision:SubscriptionKey"],
+                    Endpoint = Environment.GetEnvironmentVariable("AZURE_ENDPOINT") ?? Configuration["AzureComputerVision:Endpoint"]
                 }
             ));
             containerBuilder.RegisterModule(new DefaultCoreModule(Configuration));
