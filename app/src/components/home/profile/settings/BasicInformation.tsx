@@ -1,8 +1,9 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
-import { List, TextInput } from "react-native-paper";
-import { changeUsername } from "../../../../api/apiClient";
+import { View, StyleSheet, ToastAndroid } from "react-native";
+import { Button, List, TextInput } from "react-native-paper";
+import { changeAvatar, changeUsername } from "../../../../api/apiClient";
 import { isFalsy } from "utility-types";
+import { getPhoto } from "../../../../utils/imagePickerUtil";
 
 const styles = StyleSheet.create({
   container: {
@@ -14,13 +15,28 @@ const styles = StyleSheet.create({
   },
 });
 
-const BasicInformation: React.FC = () => {
-  const [username, setUsername] = React.useState("");
+interface BasicInformationProps {
+  name: string;
+}
+
+const BasicInformation: React.FC<BasicInformationProps> = ({ name }) => {
+  const [username, setUsername] = React.useState(name);
   const [disable, setDisable] = React.useState(false);
   const [error, setError] = React.useState(false);
 
   const changeDisableValue = () => setDisable(!disable);
   const changeErrorValue = () => setError(!error);
+
+  const handleChangeAvatar = async () => {
+    const avatar = await getPhoto();
+    if (avatar?.cancelled) return;
+
+    const response = await changeAvatar(avatar?.base64!);
+
+    if (response) {
+      ToastAndroid.show("Uploaded!", ToastAndroid.SHORT);
+    }
+  };
 
   const handleChangeUsername = async () => {
     changeDisableValue();
@@ -57,6 +73,14 @@ const BasicInformation: React.FC = () => {
               />
             }
           />
+          <Button
+            style={styles.inputs}
+            mode="contained"
+            disabled={disable}
+            onPress={handleChangeAvatar}
+          >
+            Change avatar
+          </Button>
         </View>
       </List.Section>
     </View>

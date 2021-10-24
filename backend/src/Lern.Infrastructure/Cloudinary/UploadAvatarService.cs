@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
@@ -16,11 +18,14 @@ namespace Lern.Infrastructure.Cloudinary
             Client = cloudinary.Client;
         }
 
-        public async Task<string> UploadAvatar(IFormFile avatar, Guid userId)
+        public async Task<string> UploadAvatar(string avatar, Guid id)
         {
-            var uploadParams = new ImageUploadParams()
+            await using var memStream = new MemoryStream();
+            await memStream.WriteAsync(Encoding.UTF8.GetBytes(avatar));
+            
+            var uploadParams = new ImageUploadParams
             {
-                File = new FileDescription(userId.ToString(), avatar.OpenReadStream())
+                File = new FileDescription(id.ToString(), avatar)
             };
             var uploadResult = await Client.UploadAsync(uploadParams);
 
