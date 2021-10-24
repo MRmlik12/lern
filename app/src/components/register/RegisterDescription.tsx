@@ -2,6 +2,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Paragraph } from "react-native-paper";
+import i18n from "i18n-js";
 
 const RegisterDescription: React.FC = () => {
   const styles = StyleSheet.create({
@@ -14,7 +15,7 @@ const RegisterDescription: React.FC = () => {
   return (
     <View>
       <Paragraph style={styles.descriptionText}>
-        To register account, please fill the all fields
+        {i18n.t("registerDescription")}
       </Paragraph>
     </View>
   );

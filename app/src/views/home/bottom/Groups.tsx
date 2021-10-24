@@ -7,6 +7,7 @@ import { ActivityIndicator } from "react-native-paper";
 import { ScrollView, View } from "react-native";
 import CreateGroup from "./groups/CreateGroup";
 import JoinGroup from "./groups/JoinGroup";
+import i18n from "i18n-js";
 
 const Groups: React.FC = () => {
   const [groups, setGroups] = React.useState<Array<GroupCollectionItem>>();
@@ -27,7 +28,7 @@ const Groups: React.FC = () => {
   return (
     <View>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
-        <Appbar.Content title="Groups" />
+        <Appbar.Content title={i18n.t("groups")} />
         <Appbar.Action
           icon="account-group-outline"
           onPress={() => setCreateGroupVisible(true)}

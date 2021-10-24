@@ -9,6 +9,7 @@ import {
 } from "react-native-paper";
 import { FlatGrid } from "react-native-super-grid";
 import { userInfo } from "../../../api/apiClient";
+import i18n from "i18n-js";
 
 const styles = StyleSheet.create({
   card: {
@@ -46,8 +47,8 @@ const ProfileInfo: React.FC = () => {
     setAvatarUrl(user.avatarUrl);
     setUsername(user.name);
     setItems([
-      { name: "Groups", value: user.groupsCount },
-      { name: "Sets", value: user.setCount },
+      { name: i18n.t("groups"), value: user.groupsCount },
+      { name: i18n.t("sets"), value: user.setCount },
     ]);
     setIsLoading(false);
   };

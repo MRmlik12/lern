@@ -3,6 +3,7 @@ import { ToastAndroid, View } from "react-native";
 import { Button, Dialog, TextInput, Portal } from "react-native-paper";
 import { isFalsy } from "utility-types";
 import { createGroup } from "../../../../api/apiClient";
+import i18n from "i18n-js";
 
 const CreateGroup: React.FC = () => {
   const [visible, setVisible] = React.useState(true);
@@ -19,7 +20,7 @@ const CreateGroup: React.FC = () => {
 
     const code = await createGroup(groupName);
     if (isFalsy(code)) {
-      ToastAndroid.show("Error", ToastAndroid.SHORT);
+      ToastAndroid.show(i18n.t("error"), ToastAndroid.SHORT);
       return;
     }
 
@@ -30,10 +31,10 @@ const CreateGroup: React.FC = () => {
     <View>
       <Portal>
         <Dialog visible={visible} onDismiss={hideDialog}>
-          <Dialog.Title>Create group</Dialog.Title>
+          <Dialog.Title>{i18n.t("createGroup")}</Dialog.Title>
           <Dialog.Content>
             <TextInput
-              label="Name"
+              label={i18n.t("name")}
               value={groupName}
               error={isError}
               mode="outlined"
@@ -41,8 +42,8 @@ const CreateGroup: React.FC = () => {
             />
           </Dialog.Content>
           <Dialog.Actions>
-            <Button onPress={hideDialog}>Cancel</Button>
-            <Button onPress={handleCreateGroup}>Create</Button>
+            <Button onPress={hideDialog}>{i18n.t("cancel")}</Button>
+            <Button onPress={handleCreateGroup}>{i18n.t("create")}</Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>

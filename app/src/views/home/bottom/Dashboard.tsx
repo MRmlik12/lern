@@ -11,6 +11,7 @@ import {
 } from "../../../api/apiClient";
 import { SetCollectionResponse } from "../../../api/models/setCollectionResponse";
 import { getPhoto } from "../../../utils/imagePickerUtil";
+import i18n from "i18n-js";
 
 interface DashboardProps {
   navigation: MaterialBottomTabNavigationProp<any>;
@@ -66,7 +67,7 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
   return (
     <Provider>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
-        <Appbar.Content title="Dashboard" />
+        <Appbar.Content title={i18n.t("dashboard")} />
         <Appbar.Action icon="image-plus" onPress={handleReadImageText} />
       </Appbar.Header>
       <View>
@@ -75,7 +76,7 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
         ) : (
           <SetsCollection
             navigation={navigation}
-            title="Your sets"
+            title={i18n.t("yourSets")}
             items={userSetCollection}
           />
         )}
@@ -84,7 +85,7 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
         ) : (
           <SetsCollection
             navigation={navigation}
-            title="Latest added"
+            title={i18n.t("latestAdded")}
             items={latestAdded}
           />
         )}

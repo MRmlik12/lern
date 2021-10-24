@@ -3,6 +3,7 @@ import { ToastAndroid, View } from "react-native";
 import { Button, Dialog, Portal, TextInput } from "react-native-paper";
 import { joinGroup } from "../../../../api/apiClient";
 import { isFalsy } from "utility-types";
+import i18n from "i18n-js";
 
 const JoinGroup: React.FC = () => {
   const [visible, setVisible] = React.useState(true);
@@ -23,17 +24,17 @@ const JoinGroup: React.FC = () => {
       return;
     }
 
-    ToastAndroid.show("Invalid message", ToastAndroid.SHORT);
+    ToastAndroid.show(i18n.t("invalidMessage"), ToastAndroid.SHORT);
   };
 
   return (
     <View>
       <Portal>
         <Dialog visible={visible} onDismiss={hideDialog}>
-          <Dialog.Title>Join to group</Dialog.Title>
+          <Dialog.Title>{i18n.t("joinToGroup")}</Dialog.Title>
           <Dialog.Content>
             <TextInput
-              label="Code"
+              label={i18n.t("code")}
               value={groupCode}
               error={isError}
               mode="outlined"
@@ -42,8 +43,8 @@ const JoinGroup: React.FC = () => {
             />
           </Dialog.Content>
           <Dialog.Actions>
-            <Button onPress={hideDialog}>Cancel</Button>
-            <Button onPress={handleJoinGroup}>Join</Button>
+            <Button onPress={hideDialog}>{i18n.t("cancel")}</Button>
+            <Button onPress={handleJoinGroup}>{i18n.t("join")}</Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>

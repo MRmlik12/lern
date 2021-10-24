@@ -7,6 +7,7 @@ import DeleteAccount from "../../../../components/home/profile/settings/DeleteAc
 import { MaterialBottomTabNavigationProp } from "@react-navigation/material-bottom-tabs/lib/typescript/src/types";
 import { UserInformationResponse } from "../../../../api/models/userInformationResponse";
 import { userInfo } from "../../../../api/apiClient";
+import i18n from "i18n-js";
 
 interface ProfileSettingsProps {
   navigation: MaterialBottomTabNavigationProp<any>;
@@ -30,7 +31,7 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({ navigation }) => {
     <View>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
         <Appbar.BackAction onPress={() => navigation.goBack()} />
-        <Appbar.Content title="Profile Settings" />
+        <Appbar.Content title={i18n.t("userSettings")} />
       </Appbar.Header>
       <ScrollView>
         {isLoading ? (

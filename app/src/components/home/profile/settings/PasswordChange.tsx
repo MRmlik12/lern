@@ -5,6 +5,7 @@ import { isFalsy } from "utility-types";
 import { changePassword } from "../../../../api/apiClient";
 import { clearTokens } from "../../../../utils/tokenUtil";
 import { MaterialBottomTabNavigationProp } from "@react-navigation/material-bottom-tabs/lib/typescript/src/types";
+import i18n from "i18n-js";
 
 const styles = StyleSheet.create({
   container: {
@@ -57,11 +58,11 @@ const PasswordChange: React.FC<PasswordChangeProps> = ({ navigation }) => {
 
   return (
     <View>
-      <List.Section title="Change password">
+      <List.Section title={i18n.t("changePassword")}>
         <View style={styles.container}>
           <TextInput
             style={styles.inputs}
-            label="Current password"
+            label={i18n.t("currentPassword")}
             value={currentPassword}
             disabled={disable}
             secureTextEntry
@@ -69,7 +70,7 @@ const PasswordChange: React.FC<PasswordChangeProps> = ({ navigation }) => {
           />
           <TextInput
             style={styles.inputs}
-            label="Repeat current password"
+            label={i18n.t("repeatCurrentPassword")}
             value={repeatedPassword}
             disabled={disable}
             secureTextEntry
@@ -77,7 +78,7 @@ const PasswordChange: React.FC<PasswordChangeProps> = ({ navigation }) => {
           />
           <TextInput
             style={styles.inputs}
-            label="New password"
+            label={i18n.t("newPassword")}
             value={newPassword}
             disabled={disable}
             secureTextEntry
@@ -89,7 +90,7 @@ const PasswordChange: React.FC<PasswordChangeProps> = ({ navigation }) => {
             disabled={disable}
             onPress={handleResetPassword}
           >
-            Change password
+            {i18n.t("changePassword")}
           </Button>
         </View>
       </List.Section>

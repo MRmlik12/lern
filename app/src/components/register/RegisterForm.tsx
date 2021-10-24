@@ -4,6 +4,7 @@ import { View, StyleSheet, ToastAndroid } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { register } from "../../api/apiClient";
 import { NavigationProp } from "@react-navigation/native";
+import i18n from "i18n-js";
 
 interface RegisterProps {
   navigation: NavigationProp<any>;
@@ -42,7 +43,7 @@ const RegisterForm: React.FC<RegisterProps> = ({ navigation }) => {
     <View style={styles.container}>
       <TextInput
         style={styles.formItems}
-        label="Username"
+        label={i18n.t("username")}
         mode="outlined"
         placeholder="example"
         value={username}
@@ -50,7 +51,7 @@ const RegisterForm: React.FC<RegisterProps> = ({ navigation }) => {
       />
       <TextInput
         style={styles.formItems}
-        label="Email"
+        label={i18n.t("email")}
         mode="outlined"
         placeholder="example@example.com"
         value={email}
@@ -58,7 +59,7 @@ const RegisterForm: React.FC<RegisterProps> = ({ navigation }) => {
       />
       <TextInput
         style={styles.formItems}
-        label="Password"
+        label={i18n.t("password")}
         mode="outlined"
         secureTextEntry={true}
         value={password}
@@ -69,7 +70,7 @@ const RegisterForm: React.FC<RegisterProps> = ({ navigation }) => {
         onPress={handleRegister}
         mode="contained"
       >
-        Register
+        {i18n.t("register")}
       </Button>
     </View>
   );

@@ -2,22 +2,18 @@
 import React, { ReactElement } from "react";
 import { View, StyleSheet } from "react-native";
 import { Text } from "react-native-paper";
-import {
-  useFonts,
-  // eslint-disable-next-line camelcase
-  KaushanScript_400Regular,
-} from "@expo-google-fonts/kaushan-script";
+import { useFonts } from "@expo-google-fonts/kaushan-script";
 
 export default function LoginLogo(): ReactElement {
   useFonts({
-    KaushanScript_400Regular,
+    KaushanScript: require("@expo-google-fonts/kaushan-script"),
   });
 
   const styles = StyleSheet.create({
     logo: {
       fontSize: 56,
       textAlign: "center",
-      fontFamily: "KaushanScript_400Regular",
+      fontFamily: "KaushanScript",
     },
   });
 

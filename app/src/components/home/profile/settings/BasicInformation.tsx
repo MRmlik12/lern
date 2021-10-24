@@ -4,6 +4,7 @@ import { Button, List, TextInput } from "react-native-paper";
 import { changeAvatar, changeUsername } from "../../../../api/apiClient";
 import { isFalsy } from "utility-types";
 import { getPhoto } from "../../../../utils/imagePickerUtil";
+import i18n from "i18n-js";
 
 const styles = StyleSheet.create({
   container: {
@@ -60,7 +61,7 @@ const BasicInformation: React.FC<BasicInformationProps> = ({ name }) => {
       <List.Section title="Basic information">
         <View style={styles.container}>
           <TextInput
-            label="Username"
+            label={i18n.t("username")}
             style={styles.inputs}
             value={username}
             onChangeText={(text) => setUsername(text)}
@@ -79,7 +80,7 @@ const BasicInformation: React.FC<BasicInformationProps> = ({ name }) => {
             disabled={disable}
             onPress={handleChangeAvatar}
           >
-            Change avatar
+            {i18n.t("changeAvatar")}
           </Button>
         </View>
       </List.Section>

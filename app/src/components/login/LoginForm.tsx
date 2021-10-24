@@ -4,6 +4,7 @@ import { View, StyleSheet, ToastAndroid } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { login } from "../../api/apiClient";
 import { NavigationProp } from "@react-navigation/native";
+import i18n from "../../localization";
 
 interface LoginProps {
   navigation: NavigationProp<any>;
@@ -54,7 +55,7 @@ const LoginForm: React.FC<LoginProps> = ({ navigation }) => {
     <View style={styles.container}>
       <TextInput
         style={styles.emailInput}
-        label="Email"
+        label={i18n.t("email")}
         mode="outlined"
         placeholder="example@example.com"
         value={email}
@@ -62,21 +63,21 @@ const LoginForm: React.FC<LoginProps> = ({ navigation }) => {
       />
       <TextInput
         style={styles.passwordInput}
-        label="Password"
+        label={i18n.t("password")}
         mode="outlined"
         secureTextEntry={true}
         value={password}
         onChangeText={(text) => setPassword(text)}
       />
       <Button style={styles.loginButton} onPress={handleLogin} mode="contained">
-        Login
+        {i18n.t("login")}
       </Button>
       <Button
         style={styles.registerButton}
         onPress={handleRegister}
         mode="contained"
       >
-        Register Now
+        {i18n.t("registerNow")}
       </Button>
     </View>
   );

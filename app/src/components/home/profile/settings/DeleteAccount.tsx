@@ -4,6 +4,7 @@ import { Button, Dialog, List, Paragraph, Portal } from "react-native-paper";
 import { deleteUser } from "../../../../api/apiClient";
 import { MaterialBottomTabNavigationProp } from "@react-navigation/material-bottom-tabs/lib/typescript/src/types";
 import { clearTokens } from "../../../../utils/tokenUtil";
+import i18n from "i18n-js";
 
 const styles = StyleSheet.create({
   button: {
@@ -36,27 +37,26 @@ const DeleteAccount: React.FC<DeleteAccountProps> = ({ navigation }) => {
 
   return (
     <View>
-      <List.Section title="Other operations">
+      <List.Section title={i18n.t("otherOperations")}>
         <Button
           style={styles.button}
           mode="contained"
           onPress={changeDialogState}
         >
-          Delete account
+          {i18n.t("deleteAccount")}
         </Button>
       </List.Section>
       <Portal>
         <Dialog visible={showDialog}>
-          <Dialog.Title>Delete account</Dialog.Title>
+          <Dialog.Title>{i18n.t("deleteAccount")}</Dialog.Title>
           <Dialog.Content>
             <Paragraph>
-              Do you want delete account? This operation deletes your groups,
-              sets and your personal information!
+              {i18n.t("deleteAccountDescription")}
             </Paragraph>
           </Dialog.Content>
           <Dialog.Actions>
-            <Button onPress={changeDialogState}>Cancel</Button>
-            <Button onPress={handleDelete}>Yes I&apos;m confirm</Button>
+            <Button onPress={changeDialogState}>{i18n.t("cancel")}</Button>
+            <Button onPress={handleDelete}>{i18n.t("yesConfirm")}</Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>

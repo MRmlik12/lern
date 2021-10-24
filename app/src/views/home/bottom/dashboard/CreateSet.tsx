@@ -6,6 +6,7 @@ import { createSet } from "../../../../api/apiClient";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { isFalsy } from "utility-types";
 import { RouteProp } from "@react-navigation/native";
+import i18n from "i18n-js";
 
 interface CreateSetProps {
   navigation: MaterialBottomTabNavigationProp<any>;
@@ -77,28 +78,28 @@ const CreateSet: React.FC<CreateSetProps> = ({ navigation, route }) => {
     <View>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
         <Appbar.BackAction onPress={() => navigation.goBack()} />
-        <Appbar.Content title="Create set" />
+        <Appbar.Content title={i18n.t("createSet")} />
         <Appbar.Action icon="check" onPress={handleCreateSet} />
       </Appbar.Header>
       <ScrollView>
         <View>
           <View style={styles.inputs}>
             <TextInput
-              label="Title"
+              label={i18n.t("title")}
               mode="outlined"
               style={styles.input}
               value={title}
               onChangeText={(text) => setTitle(text)}
             />
             <TextInput
-              label="Primary language"
+              label={i18n.t("primaryLanguage")}
               mode="outlined"
               style={styles.input}
               value={primaryLanguage}
               onChangeText={(text) => setPrimaryLanguage(text)}
             />
             <TextInput
-              label="Tags"
+              label={i18n.t("tags")}
               mode="outlined"
               placeholder="foo bar"
               style={styles.input}
@@ -117,7 +118,7 @@ const CreateSet: React.FC<CreateSetProps> = ({ navigation, route }) => {
                   setPhrases([...phrases, phraseItem]);
                 }}
               >
-                Phrases{"  "}
+                {i18n.t("phrases")} {"  "}
                 <Icon name="plus-circle-outline" size={20} />
               </List.Subheader>
             </View>
@@ -132,7 +133,7 @@ const CreateSet: React.FC<CreateSetProps> = ({ navigation, route }) => {
                     <TextInput
                       style={styles.phraseInputs}
                       value={primary}
-                      label="Primary phrase"
+                      label={i18n.t("primaryPhrase")}
                       mode="outlined"
                       onChangeText={(text) => (item.primaryWord = text)}
                     />
@@ -145,7 +146,7 @@ const CreateSet: React.FC<CreateSetProps> = ({ navigation, route }) => {
                     <TextInput
                       style={styles.phraseInputs}
                       value={translated}
-                      label="Secondary phrase"
+                      label={i18n.t("secondaryPhrase")}
                       mode="outlined"
                       onChangeText={(text) => (item.translatedWord = text)}
                     />

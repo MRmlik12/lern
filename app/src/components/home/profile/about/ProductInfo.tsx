@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Card, List, Text } from "react-native-paper";
 import Constants from "expo-constants";
+import i18n from "i18n-js";
 
 const styles = StyleSheet.create({
   card: {
@@ -16,17 +17,17 @@ const ProductInfo: React.FC = () => {
         <Card.Content>
           <>
             <List.Item
-              title="Version"
+              title={i18n.t("version")}
               left={(props) => <List.Icon {...props} icon="information" />}
               description={<Text>{Constants.manifest?.version}</Text>}
             />
             <List.Item
-              title="Expo version"
+              title={i18n.t("expoVersion")}
               left={(props) => <List.Icon {...props} icon="engine" />}
               description={<Text>{Constants.expoVersion}</Text>}
             />
             <List.Item
-              title="Device name"
+              title={i18n.t("deviceName")}
               left={(props) => <List.Icon {...props} icon="cellphone" />}
               description={<Text>{Constants.deviceName}</Text>}
             />
