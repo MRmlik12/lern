@@ -4,6 +4,7 @@ using Autofac;
 using AutoMapper;
 using Lern.Core.Configuration;
 using Lern.Core.ProjectAggregate.User;
+using Lern.Infrastructure.AzureServices;
 using Lern.Infrastructure.Cloudinary;
 using Lern.Infrastructure.Cloudinary.Interfaces;
 using Lern.Infrastructure.Database;
@@ -22,13 +23,19 @@ namespace Lern.Infrastructure
         private readonly List<Assembly> _assemblies = new();
         private readonly string _dbConnectionString;
         private readonly CloudinaryConfiguration _cloudinaryConfiguration;
+        private readonly AzureComputerVisionConfiguration _azureComputerVisionConfiguration;
 
-        public DefaultInfrastructureModule(string dbConnectionString, CloudinaryConfiguration cloudinaryConfiguration)
+        public DefaultInfrastructureModule(
+            string dbConnectionString,
+            CloudinaryConfiguration cloudinaryConfiguration,
+            AzureComputerVisionConfiguration azureComputerVisionConfiguration
+            )
         {
             _assemblies.Add(Assembly.GetAssembly(typeof(User)));
             _assemblies.Add(Assembly.GetAssembly(typeof(RegisterUserRequestHandler)));
             _dbConnectionString = dbConnectionString;
             _cloudinaryConfiguration = cloudinaryConfiguration;
+            _azureComputerVisionConfiguration = azureComputerVisionConfiguration;
         }
 
         protected override void Load(ContainerBuilder builder)
@@ -62,8 +69,13 @@ namespace Lern.Infrastructure
                 .As<ICloudinaryClient>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<UploadAvatarService>()
-                .As<IUploadAvatarService>()
+            builder.RegisterType<UploadImageService>()
+                .As<IUploadImageService>()
+                .InstancePerLifetimeScope();
+            
+            builder.RegisterType<TextRecognitionService>()
+                .As<ITextRecognitionService>()
+                .WithParameter("configuration", _azureComputerVisionConfiguration)
                 .InstancePerLifetimeScope();
 
             builder.Register(context => new MapperConfiguration(c => { c.AddProfile<AutoMapperProfile>(); }));

@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Http;
 
 namespace Lern.Infrastructure.Cloudinary.Interfaces
 {
-    public interface IUploadAvatarService
+    public interface IUploadImageService
     {
-        Task<string> UploadAvatar(string avatar, Guid userId);
+        Task<string> UploadImage(string avatar, Guid id);
     }
 }

@@ -55,6 +55,11 @@ namespace Lern.Api
                     Cloud = Configuration["Cloudinary:Cloud"],
                     ApiKey = Configuration["Cloudinary:ApiKey"],
                     ApiSecret = Configuration["Cloudinary:ApiSecret"]
+                },
+                new AzureComputerVisionConfiguration
+                {
+                    SubscriptionKey = Configuration["AzureComputerVision:SubscriptionKey"],
+                    Endpoint = Configuration["AzureComputerVision:Endpoint"]
                 }
             ));
             containerBuilder.RegisterModule(new DefaultCoreModule(Configuration));

@@ -1,11 +1,16 @@
 import React, { useEffect } from "react";
-import { View } from "react-native";
+import { ToastAndroid, View } from "react-native";
 import { ActivityIndicator, Appbar, Provider } from "react-native-paper";
 import CreateSetFAB from "../../../components/home/dashboard/CreateSetFAB";
 import { MaterialBottomTabNavigationProp } from "@react-navigation/material-bottom-tabs/lib/typescript/src/types";
 import SetsCollection from "../../../components/home/dashboard/SetsCollection";
-import { getLatestSet, getUserSetCollection } from "../../../api/apiClient";
+import {
+  getLatestSet,
+  getTextFromImage,
+  getUserSetCollection,
+} from "../../../api/apiClient";
 import { SetCollectionResponse } from "../../../api/models/setCollectionResponse";
+import { getPhoto } from "../../../utils/imagePickerUtil";
 
 interface DashboardProps {
   navigation: MaterialBottomTabNavigationProp<any>;
@@ -33,6 +38,27 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
     setPage(page++);
   };
 
+  const handleReadImageText = async () => {
+    const image = await getPhoto();
+    if (image?.cancelled) return;
+
+    ToastAndroid.show(
+      "This operation may take 30s, please be patient",
+      ToastAndroid.LONG
+    );
+    const response = await getTextFromImage(image?.base64!);
+
+    if (response) {
+      console.log(response, "------");
+      navigation.navigate("CreateSet", {
+        phrases: response,
+      });
+      return;
+    }
+
+    ToastAndroid.show("Error", ToastAndroid.SHORT);
+  };
+
   useEffect(() => {
     getSetCollection().catch((err) => console.log(err));
   }, []);
@@ -41,6 +67,7 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
     <Provider>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
         <Appbar.Content title="Dashboard" />
+        <Appbar.Action icon="image-plus" onPress={handleReadImageText} />
       </Appbar.Header>
       <View>
         {isLoading ? (
