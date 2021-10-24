@@ -2,9 +2,6 @@ version: '3.9'
 services:
   backend:
     build: ./backend
-    ports:
-      - 5000:80
-      - 5001:433
     environment:
       - POSTGRES_STRING
       - CLOUDINARY_CLOUD
@@ -15,8 +12,6 @@ services:
   db:
     image: postgres:13.4-alpine
     restart: always
-    ports:
-      - 5432:5432
     environment:
       - POSTGRES_DB
       - POSTGRES_USER
