@@ -1,17 +1,16 @@
 // eslint-disable-next-line no-use-before-define
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import { Text } from "react-native-paper";
-import {
-  useFonts,
-  // eslint-disable-next-line camelcase
-  KaushanScript_400Regular,
-} from "@expo-google-fonts/kaushan-script";
+import * as Font from "expo-font";
 
 export default function LoginLogo(): ReactElement {
-  useFonts({
-    KaushanScript_400Regular,
-  });
+  useEffect(() => {
+    (async () =>
+      await Font.loadAsync({
+        KaushanScript_400Regular: require("@expo-google-fonts/kaushan-script"),
+      }))();
+  }, []);
 
   const styles = StyleSheet.create({
     logo: {

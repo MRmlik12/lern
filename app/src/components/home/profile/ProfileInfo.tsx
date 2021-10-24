@@ -71,6 +71,7 @@ const ProfileInfo: React.FC = () => {
           />
           <Headline style={styles.title}>{username}</Headline>
           <FlatGrid
+            style={{ alignSelf: "center" }}
             itemDimension={120}
             data={items}
             fixed={true}

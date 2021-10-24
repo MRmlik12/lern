@@ -50,7 +50,7 @@ const Dashboard: React.FC<DashboardProps> = ({ navigation }) => {
 
     if (response) {
       console.log(response, "------");
-      navigation.navigate("CreateSet", {
+      navigation.navigate("CreateSetWithOCR", {
         phrases: response,
       });
       return;

@@ -5,9 +5,11 @@ import { MaterialBottomTabNavigationProp } from "@react-navigation/material-bott
 import { createSet } from "../../../../api/apiClient";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { isFalsy } from "utility-types";
+import { RouteProp } from "@react-navigation/native";
 
 interface CreateSetProps {
   navigation: MaterialBottomTabNavigationProp<any>;
+  route: RouteProp<{ params: { phrases: [] } }, "params">;
 }
 
 type Phrase = {
@@ -39,11 +41,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const CreateSet: React.FC<CreateSetProps> = ({ navigation }) => {
+const CreateSetWithOCR: React.FC<CreateSetProps> = ({ navigation, route }) => {
   const [title, setTitle] = React.useState("");
   const [primaryLanguage, setPrimaryLanguage] = React.useState("");
   const [tags, setTags] = React.useState("");
-  const [phrases, setPhrases] = React.useState<Array<Phrase>>([]);
+  const [phrases, setPhrases] = React.useState<Array<Phrase>>(
+    route.params.phrases
+  );
 
   const handleCreateSet = async () => {
     if (isFalsy(title)) return;
@@ -117,11 +121,15 @@ const CreateSet: React.FC<CreateSetProps> = ({ navigation }) => {
             </View>
             <ScrollView>
               {phrases.map((item, index) => {
+                const [primary] = React.useState(item.primaryWord);
+                const [translated] = React.useState(item.translatedWord);
+
                 return (
                   <View style={styles.phraseView} key={index}>
                     <Divider />
                     <TextInput
                       style={styles.phraseInputs}
+                      value={primary}
                       label="Primary phrase"
                       mode="outlined"
                       onChangeText={(text) => (item.primaryWord = text)}
@@ -134,6 +142,7 @@ const CreateSet: React.FC<CreateSetProps> = ({ navigation }) => {
                     />
                     <TextInput
                       style={styles.phraseInputs}
+                      value={translated}
                       label="Secondary phrase"
                       mode="outlined"
                       onChangeText={(text) => (item.translatedWord = text)}
@@ -149,4 +158,4 @@ const CreateSet: React.FC<CreateSetProps> = ({ navigation }) => {
   );
 };
 
-export default CreateSet;
+export default CreateSetWithOCR;
