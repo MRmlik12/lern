@@ -9,16 +9,16 @@ using Microsoft.AspNetCore.Http;
 
 namespace Lern.Infrastructure.Cloudinary
 {
-    public class UploadAvatarService : IUploadAvatarService
+    public class UploadImageService : IUploadImageService
     {
         private CloudinaryDotNet.Cloudinary Client { get; }
 
-        public UploadAvatarService(ICloudinaryClient cloudinary)
+        public UploadImageService(ICloudinaryClient cloudinary)
         {
             Client = cloudinary.Client;
         }
 
-        public async Task<string> UploadAvatar(string avatar, Guid id)
+        public async Task<string> UploadImage(string avatar, Guid id)
         {
             await using var memStream = new MemoryStream();
             await memStream.WriteAsync(Encoding.UTF8.GetBytes(avatar));

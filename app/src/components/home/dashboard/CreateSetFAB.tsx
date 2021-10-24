@@ -23,7 +23,11 @@ const CreateSetFAB: React.FC<CreateSetFABProps> = ({ navigation }) => {
         <FAB
           style={styles.fab}
           icon="plus"
-          onPress={() => navigation.navigate("CreateSet")}
+          onPress={() =>
+            navigation.navigate("CreateSet", {
+              phrases: [],
+            })
+          }
         />
       </Portal>
     </Provider>

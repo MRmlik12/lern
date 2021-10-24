@@ -10,18 +10,18 @@ namespace Lern.Infrastructure.Handlers.Users.Settings
     public class UploadUserAvatarRequestHandler : IRequestHandler<UploadUserAvatarMediatorModel, Unit>
     {
         private readonly IUserRepository _userRepository;
-        private readonly IUploadAvatarService _uploadAvatarService;
+        private readonly IUploadImageService _uploadImageService;
 
-        public UploadUserAvatarRequestHandler(IUserRepository userRepository, IUploadAvatarService uploadAvatarService)
+        public UploadUserAvatarRequestHandler(IUserRepository userRepository, IUploadImageService uploadImageService)
         {
             _userRepository = userRepository;
-            _uploadAvatarService = uploadAvatarService;
+            _uploadImageService = uploadImageService;
         }
 
         public async Task<Unit> Handle(UploadUserAvatarMediatorModel request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetUserById(request.UserId);
-            var avatarUrl = await _uploadAvatarService.UploadAvatar(request.Avatar, request.UserId);
+            var avatarUrl = await _uploadImageService.UploadImage(request.Avatar, request.UserId);
             user.AvatarUrl = avatarUrl;
             await _userRepository.Update(user);
 

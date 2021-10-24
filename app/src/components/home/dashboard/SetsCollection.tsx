@@ -26,32 +26,6 @@ const SetsCollection: React.FC<SetsCollectionProps> = ({
   title,
   items,
 }) => {
-  // const isCloseToBottom = (
-  //   layoutMeasurement: NativeScrollSize,
-  //   contentOffset: NativeScrollPoint,
-  //   contentSize: NativeScrollSize
-  // ) => {
-  //   const paddingToBottom = 20;
-  //   return (
-  //     layoutMeasurement.height + contentOffset.y >=
-  //     contentSize.height - paddingToBottom
-  //   );
-  // };
-
-  // const onScroll = async (
-  //   nativeEvent: NativeSyntheticEvent<NativeScrollEvent>
-  // ) => {
-  //   const isReachingEnd = isCloseToBottom(
-  //     nativeEvent.nativeEvent.layoutMeasurement,
-  //     nativeEvent.nativeEvent.contentOffset,
-  //     nativeEvent.nativeEvent.contentSize
-  //   );
-  //
-  //   if (isReachingEnd) {
-  //     await getSetCollection();
-  //   }
-  // };
-
   const onCardPress = (item: SetCollectionResponse) => {
     navigation.navigate("LearnMode", {
       title: item.title,

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Lern.Core.Configuration;
 using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
@@ -15,18 +16,19 @@ namespace Lern.Infrastructure.AzureServices
         {
             _client = new ComputerVisionClient(new ApiKeyServiceClientCredentials(configuration.SubscriptionKey))
             {
-                Endpoint = configuration.Endpoint
+                Endpoint = configuration.Endpoint,
             };
         }
 
-        public async Task<IList<ReadResult>> GetReadTextAsync(string url)
+        public Task<IList<ReadResult>> GetReadTextAsync(string url)
         {
-            Console.WriteLine(url);
-            var operation = await _client.ReadAsync(url);
-            var operationId = Guid.Parse( operation.OperationLocation.Split("/")[7].Split(".")[0]);
-            var result = await _client.GetReadResultAsync(operationId);
-
-            return result.AnalyzeResult.ReadResults;
+            var operation = _client.ReadAsync(url).Result;
+            var operationId = Guid.Parse(operation.OperationLocation.Split("/")[7].Split(".")[0]);
+            Thread.Sleep(3000);
+            var readResult = _client.GetReadResultAsync(operationId).Result;
+            var result = readResult.AnalyzeResult.ReadResults;
+            
+            return Task.FromResult(result);
         }
     }
 }

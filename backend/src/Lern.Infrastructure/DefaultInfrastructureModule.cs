@@ -69,8 +69,8 @@ namespace Lern.Infrastructure
                 .As<ICloudinaryClient>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<UploadAvatarService>()
-                .As<IUploadAvatarService>()
+            builder.RegisterType<UploadImageService>()
+                .As<IUploadImageService>()
                 .InstancePerLifetimeScope();
             
             builder.RegisterType<TextRecognitionService>()

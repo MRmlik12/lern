@@ -4,6 +4,7 @@ import { SetCollectionResponse } from "./models/setCollectionResponse";
 import { GetSetResponse } from "./models/getSetResponse";
 import { UserInformationResponse } from "./models/userInformationResponse";
 import { GroupCollectionItem } from "./models/groupCollectionItem";
+import { TextFromImageItem } from "./models/textFromImageResponse";
 
 const BASE_URL = "http://192.168.1.212:5000";
 
@@ -278,6 +279,29 @@ export const getLatestSet = async (): Promise<Array<SetCollectionResponse>> => {
 
   if (response.status !== 200) {
     throw new Error("Couldn't get sets data");
+  }
+
+  return response.data;
+};
+
+export const getTextFromImage = async (
+  imageData: string
+): Promise<Array<TextFromImageItem>> => {
+  const response = await axios.request<Array<TextFromImageItem>>({
+    method: "POST",
+    baseURL: BASE_URL,
+    url: "/utils/ImageToText",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${await getToken()}`,
+    },
+    data: {
+      imageData: imageData,
+    },
+  });
+
+  if (response.status !== 200) {
+    throw new Error("Couldn't get data");
   }
 
   return response.data;

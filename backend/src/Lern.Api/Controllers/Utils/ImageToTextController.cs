@@ -18,15 +18,13 @@ namespace Lern.Api.Controllers.Utils
             _mediator = mediator;
         }
         
-        [HttpGet]
-        public async Task<IActionResult> ImageToText([FromQuery] string imageUrl)
+        [HttpPost]
+        [RequestSizeLimit(100_100_100_100)]
+        public async Task<IActionResult> ImageToText([FromBody] ImageToTextModel imageToTextModel)
         {
-            if (string.IsNullOrEmpty(imageUrl))
-                return BadRequest();
-
-            var result = await _mediator.Send(new ImageToTextMediatorModel()
+            var result = await _mediator.Send(new ImageToTextMediatorModel
             {
-                ImageUrl = imageUrl
+                ImageData = $"data:image/png;base64,{imageToTextModel.ImageData}"
             });
 
             return Ok(result);
