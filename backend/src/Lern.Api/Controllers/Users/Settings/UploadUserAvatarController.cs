@@ -25,12 +25,13 @@ namespace Lern.Api.Controllers.Users.Settings
         }
 
         [HttpPost]
-        public async Task<IActionResult> UploadUserAvatar(IFormFile file)
+        [RequestSizeLimit(100_100_100_100)]
+        public async Task<IActionResult> UploadUserAvatar([FromBody] UploadUserAvatarModel avatarModel)
         {
             await _mediator.Send(new UploadUserAvatarMediatorModel
             {
                 UserId = Guid.Parse(User.FindFirst(ClaimTypes.PrimarySid)?.Value!),
-                Avatar = file
+                Avatar = $"data:image/png;base64,{avatarModel.AvatarData}"
             });
             await _unitOfWork.CompleteAsync();
 

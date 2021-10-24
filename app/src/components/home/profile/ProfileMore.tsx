@@ -38,11 +38,6 @@ const ProfileMore: React.FC<ProfileMoreProps> = ({ navigation }) => {
             onPress={() => navigation.navigate("ProfileSettings")}
           />
           <List.Item
-            title="App settings"
-            left={(props) => <List.Icon {...props} icon="cog-outline" />}
-            onPress={() => console.log("Hello")}
-          />
-          <List.Item
             title="About"
             left={(props) => (
               <List.Icon {...props} icon="information-outline" />
