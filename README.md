@@ -45,6 +45,17 @@ Głównie powstała w celu pomocy osobom, którzy są leniwi do nauki lub chcą 
 
 * .NET >= 5.0
 * NodeJS >= 14.X
+* Docker >= 20.10.12
+* Docker Compose >= 1.29
+
+Domyślnie konfiguracja POSTGRES_CONNECTION_STRING jest ustawiona na `Server=localhost;Database=lern;Uid=test;Pwd=123;` 
+można ją zmienić w ./backend/src/Lern.Api/appsettings.json. Jest niezbędnie potrzebna do zrobienia migracji bazy danych.
+
+docker-compose (potrzebna do uruchomienia PostgreSQL):
+```bash
+$ docker volume create lern-db-postgresql
+$ docker-compose -f docker-compose.dev.yml up -d
+```
 
 backend:
 ```bash
@@ -65,6 +76,18 @@ $ yarn start
 
 * .NET >= 5.0
 * NodeJS >= 14.X
+* Docker >= 20.10.12
+* Docker Compose >= 1.29
+
+Przed uruchomieniem backendu potrzebne jest dodanie zmiennej środowiskowej POSTGRES_CONNECTION_STRING i wartość ustawić jako format do połączenia się z bazy PostgreSQL ([przykład tutaj](https://www.connectionstrings.com/postgresql/)).
+Jest niezbędnie potrzebna do zrobienia migracji bazy danych.
+
+docker-compose (potrzebna do uruchomienia PostgreSQL):
+```bash
+$ docker volume create lern-db-postgresql
+// Zanim zaczniemy uruchamiać kontenery, najpierw trzeba ustawić wartości zmiennych w pliku docker-compose.production.yml
+$ docker-compose -f docker-compose.production.yml up -d
+```
 
 backend:
 ```bash
